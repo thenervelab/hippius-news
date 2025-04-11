@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Decentralized Storage on HIPPIUS BLOG</title>
+    <link>http://localhost:1313/tags/decentralized-storage/</link>
+    <description>Recent content in Decentralized Storage on HIPPIUS BLOG</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/decentralized-storage/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Transparent, Decentralized, Anonymous Cloud Storage</title>
+      <link>http://localhost:1313/posts/introduction-to-hippius-ipfs-blockchain/</link>
+      <pubDate>Fri, 15 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/introduction-to-hippius-ipfs-blockchain/</guid>
+      <description>&lt;p&gt;Hippius provides your business with an array of advantages&lt;/p&gt;&#xA;&lt;p&gt;In today&amp;rsquo;s digital world, data storage solutions are evolving rapidly. Centralized storage systems, while convenient, come with inherent risks like single points of failure, censorship, and data ownership concerns. Enter Hippius – a revolutionary decentralized storage solution built on blockchain technology and inspired by IPFS (InterPlanetary File System).&lt;/p&gt;&#xA;&lt;p&gt;Hippius leverages the power of Bittensor&amp;rsquo;s blockchain network to provide decentralized, resilient, and censorship-resistant storage. Unlike traditional cloud storage, Hippius distributes your data across a network of nodes, ensuring that your information remains accessible and secure.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

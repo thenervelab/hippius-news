@@ -1,0 +1,33 @@
+baseURL = 'https://blog.hippius.com/'
+languageCode = 'en-us'
+title = 'HIPPIUS BLOG'
+theme = "mainroad"
+
+[Params]
+  description = "DECENTRALIZED STORAGE ON BITTENSOR"
+  copyright = "The Nerve Lab"
+  mainSections = ["posts"]
+  customCSS = ["css/custom.css"]
+  sidebarPosition = "right"
+  highlightColor = "#3366FF"
+
+[Params.style.vars]
+  highlightColor = "#3366FF"
+
+[Params.sidebar]
+  home = true
+  single = true
+  list = true
+  widgets = ["search", "recent", "categories", "taglist"]
+
+[Params.widgets.recent]
+  title = "Recent Posts"
+  length = 5
+
+[Params.widgets.categories]
+  title = "Categories"
+  counter = true
+
+[Params.widgets.tags]
+  title = "Tags"
+  counter = true
