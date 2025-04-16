@@ -1,15 +1,20 @@
-baseURL = 'https://blog.hippius.com/'
+baseURL = 'https://news.hippius.com/'
 languageCode = 'en-us'
-title = 'HIPPIUS BLOG'
+title = 'HIPPIUS NEWS'
 theme = "mainroad"
 
 [Params]
-  description = "DECENTRALIZED STORAGE ON BITTENSOR"
-  copyright = "The Nerve Lab"
+  description = "DECENTRALIZED STORAGE ON BITTENSOR WITH ENCRYPTION AND ERASURE CODING"
+  copyright = "The Nerve Lab "
   mainSections = ["posts"]
   customCSS = ["css/custom.css"]
   sidebarPosition = "right"
   highlightColor = "#3366FF"
+
+[Params.logo]
+  image = "/images/Logo_Box.png"
+  title = "HIPPIUS NEWS"
+  subtitle = "DECENTRALIZED STORAGE ON BITTENSOR"
 
 [Params.style.vars]
   highlightColor = "#3366FF"
