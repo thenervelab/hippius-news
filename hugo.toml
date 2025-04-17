@@ -36,3 +36,6 @@ theme = "mainroad"
 [Params.widgets.tags]
   title = "Tags"
   counter = true
+
+[build]
+  writeStats = true

@@ -2,40 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://news.hippius.com/tags/bittensor/</loc>
+    <loc>http://localhost:1313/tags/bittensor/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://news.hippius.com/categories/blockchain/</loc>
+    <loc>http://localhost:1313/categories/blockchain/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://news.hippius.com/tags/blockchain/</loc>
+    <loc>http://localhost:1313/tags/blockchain/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://news.hippius.com/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://news.hippius.com/tags/decentralized-storage/</loc>
+    <loc>http://localhost:1313/tags/decentralized-storage/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://news.hippius.com/tags/hippius/</loc>
+    <loc>http://localhost:1313/tags/hippius/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://news.hippius.com/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://news.hippius.com/tags/ipfs/</loc>
+    <loc>http://localhost:1313/tags/ipfs/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://news.hippius.com/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://news.hippius.com/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://news.hippius.com/categories/technology/</loc>
+    <loc>http://localhost:1313/categories/technology/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://news.hippius.com/posts/introduction-to-hippius-ipfs-blockchain/</loc>
+    <loc>http://localhost:1313/posts/introduction-to-hippius-ipfs-blockchain/</loc>
     <lastmod>2024-03-15T00:00:00+00:00</lastmod>
   </url>
 </urlset>

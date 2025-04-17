@@ -1,0 +1,30 @@
+{
+  "name": "hippius-news",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postcss": "postcss"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thenervelab/hippius-news.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thenervelab/hippius-news/issues"
+  },
+  "homepage": "https://github.com/thenervelab/hippius-news#readme",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.4",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.1.4"
+  },
+  "dependencies": {
+    "postcss-nesting": "^13.0.1"
+  }
+}

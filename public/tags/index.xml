@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on HIPPIUS NEWS</title>
-    <link>https://news.hippius.com/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on HIPPIUS NEWS</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 15 Mar 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://news.hippius.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bittensor</title>
-      <link>https://news.hippius.com/tags/bittensor/</link>
+      <link>http://localhost:1313/tags/bittensor/</link>
       <pubDate>Fri, 15 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://news.hippius.com/tags/bittensor/</guid>
+      <guid>http://localhost:1313/tags/bittensor/</guid>
       <description></description>
     </item>
     <item>
       <title>Blockchain</title>
-      <link>https://news.hippius.com/tags/blockchain/</link>
+      <link>http://localhost:1313/tags/blockchain/</link>
       <pubDate>Fri, 15 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://news.hippius.com/tags/blockchain/</guid>
+      <guid>http://localhost:1313/tags/blockchain/</guid>
       <description></description>
     </item>
     <item>
       <title>Decentralized Storage</title>
-      <link>https://news.hippius.com/tags/decentralized-storage/</link>
+      <link>http://localhost:1313/tags/decentralized-storage/</link>
       <pubDate>Fri, 15 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://news.hippius.com/tags/decentralized-storage/</guid>
+      <guid>http://localhost:1313/tags/decentralized-storage/</guid>
       <description></description>
     </item>
     <item>
       <title>Hippius</title>
-      <link>https://news.hippius.com/tags/hippius/</link>
+      <link>http://localhost:1313/tags/hippius/</link>
       <pubDate>Fri, 15 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://news.hippius.com/tags/hippius/</guid>
+      <guid>http://localhost:1313/tags/hippius/</guid>
       <description></description>
     </item>
     <item>
       <title>IPFS</title>
-      <link>https://news.hippius.com/tags/ipfs/</link>
+      <link>http://localhost:1313/tags/ipfs/</link>
       <pubDate>Fri, 15 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://news.hippius.com/tags/ipfs/</guid>
+      <guid>http://localhost:1313/tags/ipfs/</guid>
       <description></description>
     </item>
   </channel>

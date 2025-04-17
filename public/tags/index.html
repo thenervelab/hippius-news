@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Tags - HIPPIUS NEWS</title>
@@ -15,30 +15,97 @@
 	<link rel="stylesheet" href="/css/custom.css">
 	<link rel="alternate" type="application/rss+xml" href="/tags/index.xml" title="HIPPIUS NEWS">
 
+    
+    <script src="http://localhost:1313/js/navbar.min.js" defer></script>
+
+
+    
+    <link rel="stylesheet" href="/css/main.css">
+
+
+
 	<link rel="shortcut icon" href="/favicon.ico">
-		
 		
 </head>
 <body class="body">
-	<div class="container container--outer">
-		<link rel="icon" type="image/png" href="/images/Logo_Box.png">
-<header class="header">
-    <div class="container header__container">
+	<div class="w-full md:p-5">
+		<header id="main-nav" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+  <div class="w-full flex justify-center px-6 md:px-12 lg:px-6 pt-0 lg:pt-8 md:pt-7">
+    <div
+      class="max-w-screen-xl flex items-center justify-between py-4 px-6 w-full rounded-xl bg-white text-black shadow-md transition-all duration-300"
+      id="nav-inner">
+      
+      
+      <a href="/" class="flex items-center gap-2 hover:opacity-60">
+        <img src="/images/Logo_Box.png" alt="Logo" class="w-8 h-8" />
+        <span class="font-medium text-lg">Hippius</span>
+      </a>
+
+      
+      <nav class="hidden md:flex gap-8 text-base font-medium flex justify-center items-center">
+        <div class="relative group">
+          <a href="#" class="flex items-center gap-1 hover:opacity-60">
+            Services
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8.4707 10.6406L12.0007 14.1606L15.5307 10.6406" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         
-	<div class="logo logo--mixed">
-		<a class="logo__link" href="/" title="HIPPIUS NEWS" rel="home">
-			<div class="logo__item logo__imagebox">
-					<img class="logo__img" src="/images/Logo_Box.png">
-				</div><div class="logo__item logo__text">
-					<div class="logo__title">HIPPIUS NEWS</div>
-					<div class="logo__tagline">DECENTRALIZED STORAGE ON BITTENSOR</div>
-				</div>
-		</a>
-	</div>
-        <div class="divider"></div>
+          
+          <div
+            class="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50"
+          >
+            <a href="/service-1" class="block px-4 py-2 hover:bg-gray-100">Service 1</a>
+            <a href="/service-2" class="block px-4 py-2 hover:bg-gray-100">Service 2</a>
+            <a href="/service-3" class="block px-4 py-2 hover:bg-gray-100">Service 3</a>
+          </div>
+        </div>
+        <a href="https://hippius.com/why-hippius" target="_blank" rel="noopener noreferrer" class="hover:opacity-60">Why Hippius?</a>
+        <a href="https://hippius.com/pricing" target="_blank" rel="noopener noreferrer" class="hover:opacity-60">Pricing</a>
+        <a href="https://docs.hippius.com" target="_blank" rel="noopener noreferrer" class="hover:opacity-60">Documentation</a>
+        <a href="https://hippius.com/join-network" target="_blank" rel="noopener noreferrer" class=" hover:opacity-60 font-semibold">Join Network</a>
+        
+        <a
+          id="dashboard-btn"
+          href="https://console.hippius.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-lg px-6 py-3 min-w-fit font-medium border transition-all duration-300"
+        >
+          Access Dashboard →
+        </a>
+      </nav>
+
     </div>
-</header> 
-		<div class="wrapper flex">
+  </div>
+</header>
+
+		
+<section class="relative bg-primary-50 h-[386px] w-full overflow-hidden flex items-center justify-center md:p-5 rounded">
+    
+    <div class="absolute inset-0 w-full h-full opacity-10">
+        <img src="/images/grid-bg.svg" class="w-full h-full object-cover" alt="grid background" />
+    </div>
+
+    
+    <div class="relative z-10 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight text-white">
+            The Hippius Blog
+        </h1>
+    </div>
+
+    
+    <div class="absolute flex items-center justify-center bottom-10 left-10 size-20">
+        <img src="/images/circular-bittensor.svg" class="absolute animate-spin" style="animation-duration: 10s"
+            alt="Circular Bittensor" />
+        <img src="/images/bittensor-logo.svg" class="size-5 absolute" alt="Bittensor Logo" />
+    </div>
+
+    
+    <div class="absolute bottom-10 right-10 border-r-2 size-10 border-b-2 border-white rounded-br"></div>
+</section>
+		<div class="wrapper flex pt-20">
 			<div class="primary">
 			
 <main class="main list" role="main">
@@ -119,7 +186,7 @@
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="https://news.hippius.com/">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
 	</form>
 </div>
 <div class="widget-recent widget">
@@ -153,7 +220,8 @@
 </div>
 </aside>
 		</div>
-		<footer class="footer">
+	</div>
+	<footer class="footer">
     <div class="footer__container">
         <div class="footer__brand">
             <div class="footer__brand-name">Hippius</div>
@@ -185,7 +253,6 @@
         </div>
     </div>
 </footer> 
-	</div>
 <script async defer src="/js/menu.js"></script>
 </body>
 </html>
