@@ -9,4 +9,21 @@ a {
 a:hover {
     color: inherit;
 }
+
+@font-face {
+    font-family: 'DigitalNumbers';
+    src: url('/fonts/DigitalNumbers-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.custom-search-box {
+   background: #F4F4F4; 
+}
+
+.bg-grey-100-by-80 {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+
   
