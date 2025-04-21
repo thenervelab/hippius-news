@@ -8,7 +8,7 @@ theme = "mainroad"
   copyright = "The Nerve Lab "
   mainSections = ["posts"]
   customCSS = ["css/custom.css"]
-  sidebarPosition = "right"
+  sidebarPosition = "left"
   highlightColor = "#3366FF"
 
 [Params.logo]
@@ -23,7 +23,7 @@ theme = "mainroad"
   home = true
   single = true
   list = true
-  widgets = ["search", "recent", "categories", "taglist"]
+  widgets = ["search", "categories", "taglist"]
 
 [Params.widgets.recent]
   title = "Recent Posts"
@@ -36,3 +36,6 @@ theme = "mainroad"
 [Params.widgets.tags]
   title = "Tags"
   counter = true
+
+[build]
+  writeStats = true

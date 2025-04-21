@@ -1046,6 +1046,10 @@ textarea {
 }
 
 /* Widgets */
+.font-digi {
+	font-family: 'DigitalNumbers';
+}
+
 .widget {
 	margin-bottom: 25px;
 	overflow: hidden;
@@ -1061,13 +1065,11 @@ textarea {
 	font-size: 16px;
 	font-size: 1rem;
 	text-transform: uppercase;
-	border-bottom: 3px solid #3366FF;
 }
 
 .widget__item {
 	display: block;
 	padding: 5px 0;
-	border-bottom: 1px dotted #ebebeb;
 }
 
 .widget__item:first-child {

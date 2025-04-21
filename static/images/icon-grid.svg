@@ -1,0 +1,19 @@
+<svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_20141_102792)">
+<rect width="38" height="38" stroke="#D3DFF8" stroke-width="0.7"/>
+<path d="M0 0L38 38" stroke="#D3DFF8" stroke-width="0.7"/>
+<path d="M0 38L38 3.10734e-06" stroke="#D3DFF8" stroke-width="0.7"/>
+<path d="M19 0V38" stroke="#D3DFF8" stroke-width="0.7"/>
+<path d="M0 19H38" stroke="#D3DFF8" stroke-width="0.7"/>
+<rect x="2.375" y="7.125" width="33.25" height="23.75" rx="1" stroke="#D3DFF8" stroke-width="0.7"/>
+<rect x="4.75" y="4.75" width="28.5" height="28.5" rx="1" stroke="#D3DFF8" stroke-width="0.7"/>
+<rect x="7.125" y="35.625" width="33.25" height="23.75" rx="1" transform="rotate(-90 7.125 35.625)" stroke="#D3DFF8" stroke-width="0.7"/>
+<circle cx="19" cy="19" r="16.625" stroke="#D3DFF8" stroke-width="0.7"/>
+<circle cx="19" cy="19" r="7.125" stroke="#D3DFF8" stroke-width="0.7"/>
+</g>
+<defs>
+<clipPath id="clip0_20141_102792">
+<rect width="38" height="38" fill="white"/>
+</clipPath>
+</defs>
+</svg>
