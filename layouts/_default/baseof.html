@@ -10,7 +10,8 @@
   {{- if .Site.Params.schema }}{{ template "_internal/schema.html" . }}{{- end }}
   {{- if .Site.Params.twitter_cards }}{{ template "_internal/twitter_cards.html" . }}{{- end }}
 
-  {{- $googleFontsLink := .Site.Params.googleFontsLink | default "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" }}
+  <!-- {{- $googleFontsLink := .Site.Params.googleFontsLink | default "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" }} -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
   {{- if hasPrefix $googleFontsLink "https://fonts.googleapis.com/" }}
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -28,8 +29,11 @@
   {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
   {{- end }}
 
-  {{ $js := resources.Get "js/navbar.js" | js.Build | minify }}
-  <script src="{{ $js.Permalink }}" defer></script>
+{{ $progress := resources.Get "js/progressBar.js" }}
+{{ $navbar := resources.Get "js/navbar.js" }}
+{{ $combined := slice $progress $navbar | resources.Concat "js/combined.js" | js.Build | minify }}
+<script src="{{ $combined.RelPermalink }}" defer></script>
+
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
@@ -44,8 +48,8 @@
     {{ template "_internal/google_analytics.html" . }}
   {{- end }}
 </head>
-<body class="body" data-page="{{ if .IsHome }}home{{ else }}internal{{ end }}">
-  <div class="w-full md:p-5">
+<body class="body font-sans" data-page="{{ if .IsHome }}home{{ else }}internal{{ end }}">
+  <div class="w-full p-4 md:p-10">
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
     <!-- {{ partial "hero.html" . }} -->
     {{ if .IsHome }}
@@ -55,18 +59,15 @@
 
     <!-- Mobile: Search + Categories Horizontal Row -->
     {{ if or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") }}
-      <div class="md:hidden px-6 pt-10 max-w-screen-xl mx-auto flex items-center gap-3 {{ if not .IsHome }}mt-[70px]{{ end }}">
+      <div class="md:hidden pt-10 max-w-screen-xl mx-auto flex items-center gap-3 px-2 {{ if not .IsHome }}mt-[70px]{{ end }}">
         {{ partial "widgets/search.html" . }}
         {{ partial "widgets/categories.html" . }}
       </div>
     {{ end }}
 
 
-
-
-
     <!-- Main layout with Sidebar and Content for Desktop -->
-    <div class="wrapper flex {{ if eq .Site.Params.sidebarPosition "right" }}flex-row-reverse{{ else }}flex-row{{ end }} pt-20 gap-8 max-w-screen-xl mx-auto px-6 {{ if not .IsHome }}mt-[50px]{{ end }}">
+    <div class=" flex {{ if eq .Site.Params.sidebarPosition "right" }}flex-row-reverse{{ else }}flex-row{{ end }} pt-6 gap-4 max-w-screen-xl mx-auto px-2 {{ if not .IsHome }}mt-0 sm:mt-[90px]{{ end }}">
       <aside class="hidden md:block w-full md:w-[280px] flex-shrink-0">
         {{ block "sidebar" . }}{{ partial "sidebar.html" . }}{{ end }}
       </aside>

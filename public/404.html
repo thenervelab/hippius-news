@@ -6,6 +6,9 @@
   <title>404 Page not found - HIPPIUS NEWS</title>
   <script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
   <meta name="description" content="">
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -14,19 +17,22 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/custom.css">
 
-  
-  <script src="http://localhost:1313/js/navbar.min.js" defer></script>
+
+
+
+<script src="/js/combined.min.js" defer></script>
+
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="shortcut icon" href="/favicon.ico">
     
 </head>
-<body class="body" data-page="internal">
-  <div class="w-full md:p-5">
+<body class="body font-sans" data-page="internal">
+  <div class="w-full p-4 md:p-10">
     <header id="main-nav" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
-  <div class="w-full flex justify-center px-6 md:px-12 lg:px-6 pt-6 sm:pt-0  lg:pt-8 md:pt-7">
+  <div class="w-full flex justify-center px-4 md:px-12 lg:px-6 pt-4 sm:pt-0 lg:pt-4 md:pt-4" id="nav-outer">
     <div
-      class="max-w-screen-xl flex items-center justify-between py-4 px-6 w-full rounded-xl bg-white text-black shadow-md transition-all duration-300"
+      class="max-w-screen-xl flex items-center justify-between py-4 px-4 w-full rounded-xl bg-white text-black shadow-md transition-all duration-300"
       id="nav-inner">
 
       
@@ -154,19 +160,16 @@
     
 
 
-
-
-
     
-    <div class="wrapper flex flex-row pt-20 gap-8 max-w-screen-xl mx-auto px-6 mt-[50px]">
+    <div class=" flex flex-row pt-6 gap-4 max-w-screen-xl mx-auto px-2 mt-0 sm:mt-[90px]">
       <aside class="hidden md:block w-full md:w-[280px] flex-shrink-0">
         
-<div class="space-y-6">
+<div class="space-y-4">
 	
 	<aside class="sidebar"><div class="custom-search-box rounded-lg px-4 py-3 w-full md:mb-6">
 	<form class="flex items-center w-full" role="search" method="get" action="https://google.com/search">
 		<input
-		class="flex-1 min-w-0 bg-transparent text-gray-700 placeholder-gray-500 text-base font-medium border-none focus:outline-none focus:ring-0"
+		class="flex-1 min-w-0 bg-transparent text-gray-700 placeholder-gray-500 text-[14px] font-medium border-none focus:outline-none focus:ring-0"
 		type="search" placeholder="Search blog" name="q" aria-label="Search blog" />
 		<button type="submit" class="ml-3 text-gray-500 hover:text-black focus:outline-none">			
 			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -273,35 +276,35 @@
   <h4 class="widget__title font-digi text-[12px] font-normal text-black mb-4">Tags</h4>
   <div class="widget__content flex flex-wrap gap-2">
         <a
-          class="bg-gray-100 text-gray-800 px-2 py-1 rounded-lg text-[14px] font-normal hover:opacity-80 transition-all"
+          class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-[14px] font-normal hover:opacity-80 transition-all"
           href="/tags/bittensor/"
           title="Bittensor"
         >
           Bittensor
         </a>
         <a
-          class="bg-gray-100 text-gray-800 px-2 py-1 rounded-lg text-[14px] font-normal hover:opacity-80 transition-all"
+          class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-[14px] font-normal hover:opacity-80 transition-all"
           href="/tags/blockchain/"
           title="Blockchain"
         >
           Blockchain
         </a>
         <a
-          class="bg-gray-100 text-gray-800 px-2 py-1 rounded-lg text-[14px] font-normal hover:opacity-80 transition-all"
+          class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-[14px] font-normal hover:opacity-80 transition-all"
           href="/tags/decentralized-storage/"
           title="Decentralized Storage"
         >
           Decentralized Storage
         </a>
         <a
-          class="bg-gray-100 text-gray-800 px-2 py-1 rounded-lg text-[14px] font-normal hover:opacity-80 transition-all"
+          class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-[14px] font-normal hover:opacity-80 transition-all"
           href="/tags/hippius/"
           title="Hippius"
         >
           Hippius
         </a>
         <a
-          class="bg-gray-100 text-gray-800 px-2 py-1 rounded-lg text-[14px] font-normal hover:opacity-80 transition-all"
+          class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-[14px] font-normal hover:opacity-80 transition-all"
           href="/tags/ipfs/"
           title="IPFS"
         >
@@ -432,7 +435,7 @@
                     </svg>Hippius 2025</span><span>•</span><span>Terms and Conditions</span><span>•</span><span>Privacy
                     Policy</span>
             </div>
-            <div class="flex gap-1 duration-500 items-center text-white gap-x-4 opacity-100"><a
+            <div class="flex gap-1 duration-500 items-center sm:justify-start justify-center text-white gap-x-4 opacity-100 w-full sm:w-auto"><a
                     href="https://github.com/thenervelab"><svg viewBox="0 0 18 18" fill="none"
                         xmlns="http://www.w3.org/2000/svg" class="size-6">
                         <path

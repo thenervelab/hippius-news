@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
+
+@font-face {
+    font-family: 'DigitalNumbers';
+    src: url('/fonts/DigitalNumbers-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Apply Geist globally */
+body {
+    font-family: 'Geist', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
 a {
     @apply no-underline text-inherit;
 }
@@ -16,6 +30,7 @@ a:hover {
     font-weight: normal;
     font-style: normal;
 }
+
 
 .custom-search-box {
    background: #F4F4F4; 
