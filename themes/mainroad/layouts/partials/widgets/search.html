@@ -1,21 +1,8 @@
-<!-- {{- $actionURL := .Site.Params.widgets.search.url | default "https://google.com/search" -}}
 {{- $inputName := .Site.Params.widgets.search.input.name | default "sitesearch" -}}
 {{- $inputPre := .Site.Params.widgets.search.input.pre -}}
 
-<div class="widget-search widget">
-	<form class="widget-search__form" role="search" method="get" action="{{ $actionURL }}">
-		<input class="widget-search__field" type="search" placeholder="{{ T "search_placeholder" }}" value="" name="q" aria-label="{{ T "search_placeholder" }}">
-		<input class="widget-search__submit" type="submit" value="Search">
-		{{ if $inputName -}}<input type="hidden" name="{{ $inputName }}" value="{{ $inputPre }}{{ .Site.BaseURL }}">{{- end }}
-	</form>
-</div> -->
-
-{{- $actionURL := .Site.Params.widgets.search.url | default "https://google.com/search" -}}
-{{- $inputName := .Site.Params.widgets.search.input.name | default "sitesearch" -}}
-{{- $inputPre := .Site.Params.widgets.search.input.pre -}}
-
-<div class="custom-search-box rounded-lg px-4 py-3 w-full md:mb-6">
-	<form class="flex items-center w-full" role="search" method="get" action="{{ $actionURL }}">
+<div class="custom-search-box rounded-lg px-4 py-3 w-full lg:mb-6 max-w-[calc(100%-8.25rem)] lg:max-w-full">
+	<form class="flex items-center w-full" role="search" method="get" action="/search">
 		<input
 		class="flex-1 min-w-0 bg-transparent text-gray-700 placeholder-gray-500 text-[14px] font-medium border-none focus:outline-none focus:ring-0"
 		type="search" placeholder="Search blog" name="q" aria-label="Search blog" />
@@ -28,8 +15,5 @@
 					stroke-linejoin="round" />
 			</svg>
 		</button>
-		{{ if $inputName -}}
-		<input type="hidden" name="{{ $inputName }}" value="{{ $inputPre }}{{ .Site.BaseURL }}">
-		{{- end }}
 	</form>
 </div>

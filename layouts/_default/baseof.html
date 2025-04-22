@@ -19,6 +19,43 @@
   <link rel="stylesheet" {{ printf `href="%s"` $googleFontsLink | safeHTMLAttr }}>
   {{- end }}
 
+  <style>
+    body[data-page="home"] #nav-inner {
+      background-color: transparent;
+      color: white;
+      margin-top: 3rem;
+      transition: none !important;
+    }
+
+    body[data-page="home"] #dashboard-btn {
+      background-color: white;
+      color: black;
+      border-color: white;
+    }
+
+    body[data-page="home"] #mobile-menu-button {
+      background-color: white;
+      color: black;
+      border-color: white;
+    }
+
+    @media only screen and (max-width: 1024px) {
+      body[data-page="home"] #nav-inner {
+        margin-top: 0rem;
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      body[data-page="home"] #nav-inner {
+        margin-top: 1rem;
+      }
+    }
+    @media only screen and (max-width: 640px) {
+      body[data-page="home"] #nav-inner {
+        margin-top: 0rem;
+      }
+    }
+  </style>
+
   {{ $style := resources.Get "css/style.css" | resources.ExecuteAsTemplate "css/style.css" . -}}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
   {{ range .Site.Params.customCSS -}}
@@ -49,7 +86,7 @@
   {{- end }}
 </head>
 <body class="body font-sans" data-page="{{ if .IsHome }}home{{ else }}internal{{ end }}">
-  <div class="w-full p-4 md:p-10">
+  <div class="w-full p-4 lg:p-10">
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
     <!-- {{ partial "hero.html" . }} -->
     {{ if .IsHome }}
@@ -59,7 +96,7 @@
 
     <!-- Mobile: Search + Categories Horizontal Row -->
     {{ if or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") }}
-      <div class="md:hidden pt-10 max-w-screen-xl mx-auto flex items-center gap-3 px-2 {{ if not .IsHome }}mt-[70px]{{ end }}">
+      <div class="lg:hidden pt-10 sm:pt-0 max-w-screen-xl mx-auto flex items-center gap-3 px-2 {{ if not .IsHome }}mt-[90px]{{ end }}">
         {{ partial "widgets/search.html" . }}
         {{ partial "widgets/categories.html" . }}
       </div>
@@ -67,8 +104,8 @@
 
 
     <!-- Main layout with Sidebar and Content for Desktop -->
-    <div class=" flex {{ if eq .Site.Params.sidebarPosition "right" }}flex-row-reverse{{ else }}flex-row{{ end }} pt-6 gap-4 max-w-screen-xl mx-auto px-2 {{ if not .IsHome }}mt-0 sm:mt-[90px]{{ end }}">
-      <aside class="hidden md:block w-full md:w-[280px] flex-shrink-0">
+    <div class=" flex {{ if eq .Site.Params.sidebarPosition "right" }}flex-row-reverse{{ else }}flex-row{{ end }} pt-6 gap-4 max-w-screen-xl mx-auto px-2 {{ if not .IsHome }}mt-0 lg:mt-[90px]{{ end }}">
+      <aside class="hidden lg:block w-full md:w-[280px] flex-shrink-0">
         {{ block "sidebar" . }}{{ partial "sidebar.html" . }}{{ end }}
       </aside>
 

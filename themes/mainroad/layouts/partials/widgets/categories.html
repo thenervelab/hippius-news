@@ -2,7 +2,7 @@
 {{- if gt (len $categories) 0 }}
 
 <!-- Desktop version -->
-<div class="hidden md:block widget-categories widget">
+<div class="hidden lg:block widget-categories widget">
   <h4 class="text-[12px] font-digi tracking-wide mb-4">{{ T "categories_title" }}</h4>
   <div class="flex flex-col gap-3 pl-4">
     {{- range $name, $taxonomy := $categories }}
@@ -19,7 +19,7 @@
 </div>
 
 <!-- Mobile version -->
-<div class="md:hidden flex-shrink-0 relative">
+<div class="lg:hidden flex-shrink-0 relative">
   <button
     id="toggleCategoriesBtn"
     type="button"
