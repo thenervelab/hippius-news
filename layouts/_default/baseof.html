@@ -95,8 +95,8 @@
 
 
     <!-- Mobile: Search + Categories Horizontal Row -->
-    {{ if or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") }}
-      <div class="lg:hidden pt-10 sm:pt-0 max-w-screen-xl mx-auto flex items-center gap-3 px-2 {{ if not .IsHome }}mt-[90px]{{ end }}">
+    {{ if or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") (eq .RelPermalink "/search/") }}
+      <div class="lg:hidden {{ if not .IsHome }}pt-0{{ else }}pt-10{{ end }} sm:pt-0 max-w-screen-xl mx-auto flex items-center gap-3 px-2 {{ if not .IsHome }}mt-[90px]{{ end }}">
         {{ partial "widgets/search.html" . }}
         {{ partial "widgets/categories.html" . }}
       </div>
@@ -109,7 +109,7 @@
         {{ block "sidebar" . }}{{ partial "sidebar.html" . }}{{ end }}
       </aside>
 
-      <main class="flex-1 {{ if not (or .IsHome (eq .Kind "taxonomy") (eq .Kind "term")) }}mt-[50px] sm:mt-0{{ end }}">
+      <main class="flex-1 {{ if not (or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") (eq .RelPermalink "/search/")) }}mt-[50px] sm:mt-0{{ end }}">
         {{ block "main" . }}
         {{ with .Content }}
         <div class="content main__content clearfix">
@@ -128,5 +128,7 @@
   <script src="{{ . | relURL }}"></script>
   {{- end }}
   {{- partial "mathjax.html" . -}}
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+
 </body>
 </html>

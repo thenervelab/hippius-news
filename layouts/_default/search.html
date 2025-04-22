@@ -1,0 +1,113 @@
+{{ define "main" }}
+<main class="main list" role="main">
+  {{ $query := .Site.Params.query }}
+  <header class="main__header mb-8">
+    <h1 id="search-title" class="main__title text-[24px] sm:text-[32px] font-medium text-[#0A0A0A]">
+      Search results for ""
+    </h1>
+
+  </header>
+
+  <div id="search-results" class="flex flex-col gap-6"></div>
+</main>
+
+<script>
+  const exactQuery = new URLSearchParams(window.location.search).get('q');
+  const query = new URLSearchParams(window.location.search).get('q')?.toLowerCase();
+  const container = document.getElementById('search-results');
+
+  // Set the heading dynamically
+  const searchTitle = document.getElementById("search-title");
+  if (searchTitle && exactQuery) {
+    searchTitle.innerText = `Search results for "${exactQuery}"`;
+  }
+
+  // Fill in search input if present
+  const searchInput = document.querySelector('input[name="q"]');
+  if (searchInput && exactQuery) {
+    searchInput.value = exactQuery;
+  }
+
+  fetch('/index.json')
+    .then(response => response.json())
+    .then(data => {
+      const results = data.filter(post =>
+        post.title.toLowerCase().includes(query) ||
+        post.summary.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query)
+      );
+
+      if (results.length === 0) {
+        container.innerHTML = `<p class="text-gray-600">No results found for "${exactQuery}".</p>`;
+        return;
+      }
+
+      results.forEach(post => {
+        const article = document.createElement('article');
+        article.className = 'flex flex-col md:flex-row gap-6 mb-6';
+
+        const thumbnailHTML = post.thumbnail
+          ? `
+            <div class="w-full md:w-[280px] flex-shrink-0">
+              <a href="${post.permalink}" class="block w-full aspect-square overflow-hidden rounded border">
+                <img src="${post.thumbnail}" alt="${post.title} thumbnail" class="object-cover w-full h-full">
+              </a>
+            </div>
+          `
+          : '';
+
+        article.innerHTML = `
+          ${thumbnailHTML}
+          <div class="flex flex-col gap-2">
+            <h2 class="text-[22px] sm:text-[24px] leading-[30px] sm:leading-[32px] font-medium text-[#0A0A0A] mt-2"
+              style="letter-spacing: 0;">
+              <a href="${post.permalink}" class="hover:underline">${post.title}</a>
+            </h2>
+
+            <p class="text-[14px] sm:text-[16px] leading-[20px] sm:leading-[22px] font-medium text-[#353535]"
+              style="letter-spacing: -0.02em;">
+              ${post.summary}
+            </p>
+
+            <div
+              class="flex flex-wrap items-center gap-2 text-[14px] sm:text-[16px] leading-[20px] sm:leading-[22px] font-medium text-[#7D7D7D]"
+              style="letter-spacing: -0.02em;">
+              <span>By ${post.author || 'Unknown'}</span>
+              <span class="w-1 h-1 rounded-full bg-[#D9D9D9]"></span>
+              <span>${post.readingTime || '1'} mins read</span>
+              <span class="w-1 h-1 rounded-full bg-[#D9D9D9]"></span>
+              <span>${post.date || ''}</span>
+            </div>
+
+            <div class="flex items-center gap-2 mt-2">
+              <span class="text-[14px] leading-[20px] font-medium text-[#7D7D7D] font-sans"
+                style="letter-spacing: -0.02em;">
+                Share this article
+              </span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <a href="https://x.com/intent/tweet?text=${post.title}&url=${post.permalink}" target="_blank"
+                rel="noopener noreferrer"
+                class="relative w-[38px] h-[38px] rounded border border-[#B4C8F3] flex items-center justify-center">
+                <img src="/images/icon-grid.svg" alt="icon grid" class="absolute inset-0 w-full h-full rounded" />
+                <img src="/images/twitter.svg" alt="Share on Twitter" class="relative w-[20.28px] h-[18.33px] z-10" />
+              </a>
+
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=${post.permalink}&title=${post.title}"
+                target="_blank" rel="noopener noreferrer"
+                class="relative w-[38px] h-[38px] rounded border border-[#B4C8F3] flex items-center justify-center">
+                <img src="/images/icon-grid.svg" alt="icon grid" class="absolute inset-0 w-full h-full rounded" />
+                <img src="/images/linkedin.svg" alt="Share on LinkedIn"
+                  class="relative w-[20.28px] h-[18.33px] z-10" />
+              </a>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(article);
+      });
+
+    });
+</script>
+{{ end }}

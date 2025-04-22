@@ -1,0 +1,16 @@
+{{- $pages := where .Site.RegularPages "Type" "in" site.Params.mainSections -}}
+[
+  {{- range $index, $page := $pages -}}
+    {{- if $index }},{{ end }}
+    {
+      "title": {{ $page.Title | jsonify }},
+      "permalink": {{ $page.Permalink | jsonify }},
+      "summary": {{ $page.Summary | plainify | jsonify }},
+      "excerpt": {{ with $page.Params.excerpt }}{{ . | jsonify }}{{ else }}null{{ end }},
+      "thumbnail": {{ with $page.Params.thumbnail }}{{ . | jsonify }}{{ else }}null{{ end }},
+      "author": {{ with $page.Params.author }}{{ . | jsonify }}{{ else }}null{{ end }},
+      "date": {{ $page.Date.Format "January 2, 2006" | jsonify }},
+      "readingTime": {{ $page.ReadingTime | jsonify }}
+    }
+  {{- end -}}
+]

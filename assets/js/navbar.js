@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     navInner.style.setProperty("background-color", "#fff", "important");
     navInner.style.setProperty("color", "#000", "important");
-    navInner.style.setProperty("margin-top", "0", "important");
+    navInner.style.setProperty("margin-top", window.matchMedia("(max-width: 640px)").matches ? "0" : window.matchMedia("(max-width: 768px)").matches ? "1rem": "0", "important");
 
     dashboardBtn.style.setProperty("background-color", "#3366FF", "important");
     dashboardBtn.style.setProperty("color", "#fff", "important");
@@ -130,5 +130,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 0);
   } else {
     applyScrolledStyles();
+    window.addEventListener("resize", () => {
+      applyScrolledStyles();
+
+    });
+
   }
 });

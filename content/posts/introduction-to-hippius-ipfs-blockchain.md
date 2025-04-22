@@ -1,5 +1,5 @@
 ---
-title: "Transparent, Decentralized, Anonymous Cloud Storage"
+title: "Decentralized, Anonymous Cloud Storage"
 date: 2024-03-15
 draft: false
 tags: ["Bittensor", "Blockchain", "Decentralized Storage", "Hippius", "IPFS"]
@@ -21,7 +21,7 @@ Hippius leverages the power of Bittensor's blockchain network to provide decentr
 
 ## 🗂️ IPFS STORAGE
 
-### Transparent, Decentralized, Anonymous Cloud Storage
+### Decentralized, Anonymous Cloud Storage
 
 Powered by decentralized solutions—storage within milliseconds and speed—backed by a blockchain for unmatched transparency and trust.
 

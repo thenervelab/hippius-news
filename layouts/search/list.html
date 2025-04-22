@@ -1,0 +1,46 @@
+{{ define "main" }}
+<main class="max-w-screen-xl mx-auto px-4 py-8">
+  <h1 class="text-2xl font-semibold mb-6">Search Results</h1>
+  <p id="search-status" class="mb-4 text-gray-500">Searching...</p>
+  <ul id="search-results" class="space-y-6"></ul>
+</main>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("q")?.toLowerCase() || "";
+  const status = document.getElementById("search-status");
+  const container = document.getElementById("search-results");
+
+  if (!query) {
+    status.innerHTML = "Please enter a search term.";
+  } else {
+    fetch("/index.json")
+      .then(res => res.json())
+      .then(data => {
+        const filtered = data.filter(post =>
+          (post.title && post.title.toLowerCase().includes(query)) ||
+          (post.summary && post.summary.toLowerCase().includes(query)) ||
+          (post.content && post.content.toLowerCase().includes(query))
+        );
+
+        if (filtered.length === 0) {
+          status.innerHTML = `No results found for "<strong>${query}</strong>".`;
+          return;
+        }
+
+        status.innerHTML = `Showing results for "<strong>${query}</strong>":`;
+
+        filtered.forEach(post => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <a href="${post.permalink}" class="text-lg font-semibold text-primary-50 hover:underline">
+              ${post.title}
+            </a>
+            <p class="text-sm text-gray-500">${post.summary || ""}</p>
+          `;
+          container.appendChild(li);
+        });
+      });
+  }
+</script>
+{{ end }}

@@ -1,1 +1,13 @@
 baseURL = 'https://news.hippius.com/'
+
+[params]
+  enableSearch = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[outputFormats.JSON]
+mediaType = "application/json"
+baseName = "index"
+isPlainText = true
+notAlternative = true
