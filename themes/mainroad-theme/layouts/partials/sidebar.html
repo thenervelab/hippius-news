@@ -1,0 +1,54 @@
+{{- $sidebar := false }}
+{{- if eq .Kind "home" -}}
+	{{ $sidebar = (default .Site.Params.sidebar.home .Params.sidebar) }}
+{{- else if eq .Kind "page" -}}
+	{{ $sidebar = (default .Site.Params.sidebar.single .Params.sidebar) }}
+{{- else -}}
+	{{ $sidebar = (default .Site.Params.sidebar.list .Params.sidebar) }}
+{{ end }}
+
+{{- if $sidebar -}}
+<div class="space-y-4">
+	<!-- Sidebar Part 1: Search + Categories -->
+	<aside class="sidebar{{ if eq $sidebar "left" }} sidebar--left{{ end }}">
+		{{- $root := . }}
+		{{- with (default .Site.Params.sidebar.widgets .Params.widgets) }}
+			{{- range $widget := . }}
+				{{- if in (slice "search" "categories") $widget }}
+					{{- $widgetPath := printf "widgets/%s.html" $widget }}
+					{{- $widgetCached := false }}
+					{{- if isset $.Site.Params "widgets" }}
+						{{- $widgetCached = (index $.Site.Params.widgets $widget).cached }}
+					{{- end }}
+					{{- if eq $widgetCached true }}
+						{{- partialCached $widgetPath $root }}
+					{{- else }}
+						{{- partial $widgetPath $root }}
+					{{- end }}
+				{{- end }}
+			{{- end }}
+		{{- end }}
+	</aside>
+
+	<!-- Sidebar Part 2: Tags Only (Hidden on small screens) -->
+	<aside class="hidden md:block sidebar{{ if eq $sidebar "left" }} sidebar--left{{ end }}">
+		{{- $root := . }}
+		{{- with (default .Site.Params.sidebar.widgets .Params.widgets) }}
+			{{- range $widget := . }}
+				{{- if eq $widget "taglist" }}
+					{{- $widgetPath := printf "widgets/%s.html" $widget }}
+					{{- $widgetCached := false }}
+					{{- if isset $.Site.Params "widgets" }}
+						{{- $widgetCached = (index $.Site.Params.widgets $widget).cached }}
+					{{- end }}
+					{{- if eq $widgetCached true }}
+						{{- partialCached $widgetPath $root }}
+					{{- else }}
+						{{- partial $widgetPath $root }}
+					{{- end }}
+				{{- end }}
+			{{- end }}
+		{{- end }}
+	</aside>
+</div>
+{{- end }}

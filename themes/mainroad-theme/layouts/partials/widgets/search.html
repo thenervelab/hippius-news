@@ -1,0 +1,35 @@
+<!-- {{- $actionURL := .Site.Params.widgets.search.url | default "https://google.com/search" -}}
+{{- $inputName := .Site.Params.widgets.search.input.name | default "sitesearch" -}}
+{{- $inputPre := .Site.Params.widgets.search.input.pre -}}
+
+<div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="{{ $actionURL }}">
+		<input class="widget-search__field" type="search" placeholder="{{ T "search_placeholder" }}" value="" name="q" aria-label="{{ T "search_placeholder" }}">
+		<input class="widget-search__submit" type="submit" value="Search">
+		{{ if $inputName -}}<input type="hidden" name="{{ $inputName }}" value="{{ $inputPre }}{{ .Site.BaseURL }}">{{- end }}
+	</form>
+</div> -->
+
+{{- $actionURL := .Site.Params.widgets.search.url | default "https://google.com/search" -}}
+{{- $inputName := .Site.Params.widgets.search.input.name | default "sitesearch" -}}
+{{- $inputPre := .Site.Params.widgets.search.input.pre -}}
+
+<div class="custom-search-box rounded-lg px-4 py-3 w-full md:mb-6">
+	<form class="flex items-center w-full" role="search" method="get" action="{{ $actionURL }}">
+		<input
+		class="flex-1 min-w-0 bg-transparent text-gray-700 placeholder-gray-500 text-[14px] font-medium border-none focus:outline-none focus:ring-0"
+		type="search" placeholder="Search blog" name="q" aria-label="Search blog" />
+		<button type="submit" class="ml-3 text-gray-500 hover:text-black focus:outline-none">			
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path
+					d="M7.66732 13.9987C11.1651 13.9987 14.0007 11.1632 14.0007 7.66536C14.0007 4.16756 11.1651 1.33203 7.66732 1.33203C4.16951 1.33203 1.33398 4.16756 1.33398 7.66536C1.33398 11.1632 4.16951 13.9987 7.66732 13.9987Z"
+					stroke="#7D7D7D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+				<path d="M14.6673 14.6654L13.334 13.332" stroke="#7D7D7D" stroke-width="1.5" stroke-linecap="round"
+					stroke-linejoin="round" />
+			</svg>
+		</button>
+		{{ if $inputName -}}
+		<input type="hidden" name="{{ $inputName }}" value="{{ $inputPre }}{{ .Site.BaseURL }}">
+		{{- end }}
+	</form>
+</div>
