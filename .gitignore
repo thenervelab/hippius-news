@@ -34,3 +34,25 @@ node_modules/
 # Environment variables
 .env
 .env.* 
+
+
+# Ignore Mainroad theme files
+# NPM
+/themes/mainraod/node_modules/
+/themes/mainraod/npm-debug.log
+
+# IDE
+/themes/mainraod/.idea
+/themes/mainraod/*.sublime-project
+/themes/mainraod/*.sublime-workspace
+/themes/mainraod/.vscode/*
+
+# OS
+/themes/mainraod/._*
+/themes/mainraod/Thumbs.db
+/themes/mainraod//themes/mainraod/.DS_Store
+/themes/mainraod/.Trashes
+/themes/mainraod/.Spotlight-V100
+/themes/mainraod/.AppleDouble
+/themes/mainraod/.LSOverride
+/themes/mainraod/Desktop.ini
