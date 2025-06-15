@@ -2,7 +2,7 @@
 <main class="main list" role="main">
   {{- with .Title }}
   <header class="main__header mb-8">
-    <h1 class="main__title text-[24px] sm:text-[32px] font-medium text-[#0A0A0A]">{{ . }}</h1>
+    <h1 class="main__title text-2xl sm:text-[32px] font-medium text-grey-10">{{ . }}</h1>
   </header>
   {{- end }}
 
@@ -14,11 +14,11 @@
 
   {{ $paginator := .Paginator }}
   {{- range $paginator.Pages }}
-  <article class="flex flex-col md:flex-row gap-6 mb-6">
+  <article class="flex flex-col md:flex-row gap-5 mb-6 opacity-0 will-change-transform backface-hidden article-fade">
     {{ $page := . }}
     {{ with $page.Params.thumbnail }}
     <div class="w-full md:w-[280px] flex-shrink-0">
-      <a href="{{ $page.Permalink }}" class="block w-full aspect-square overflow-hidden rounded border">
+      <a href="{{ $page.Permalink }}" class="block w-full aspect-square overflow-hidden rounded border md:h-auto h-[212px]">
         <img src="{{ . }}" alt="{{ $page.Title }} thumbnail" class="object-cover w-full h-full">
       </a>
     </div>
@@ -30,41 +30,41 @@
         {{ $len := len . }}
         {{ range $i, $cat := . }}
         <a href="{{ "categories/" | relURL }}{{ $cat | urlize }}"
-          class="inline-flex items-center h-[28px] gap-[8px] px-[8px] py-[4px] border border-[#E3E3E3] rounded-[4px] bg-white text-[12px] sm:text-[14px] leading-[18px] sm:leading-[20px] font-medium text-gray-600"
+          class="inline-flex items-center h-[28px] gap-[8px] px-[8px] py-[4px] border border-grey-80 rounded-[4px] bg-grey-100 text-xs sm:text-sm leading-[18px] sm:leading-[20px] font-medium text-grey-50"
           style="letter-spacing: -0.02em;">
           {{ $cat }}
         </a>
         {{ if and (lt (add $i 1) $len) }}
-        <span class="w-[4px] h-[4px] bg-[#D9D9D9] rounded-full"></span>
+        <span class="w-[4px] h-[4px] bg-grey-75 rounded-full"></span>
         {{ end }}
         {{ end }}
       </div>
       {{ end }}
 
-      <h2 class="text-[22px] sm:text-[24px] leading-[30px] sm:leading-[32px] font-medium text-[#0A0A0A] mt-2"
+      <h2 class="text-[22px] sm:text-2xl leading-[30px] sm:leading-[32px] font-medium text-grey-10 mt-2 hover:text-primary-50 transition-colors duration-200"
         style="letter-spacing: 0;">
-        <a href="{{ .Permalink }}" class="hover:underline">{{ .Title }}</a>
+        <a href="{{ .Permalink }}" >{{ .Title }}</a>
       </h2>
 
       {{ with .Params.excerpt }}
-      <p class="text-[14px] sm:text-[16px] leading-[20px] sm:leading-[22px] font-medium text-[#353535]"
+      <p class="text-sm sm:text-base leading-[20px] sm:leading-[22px] font-medium text-grey-40"
         style="letter-spacing: -0.02em;">
         {{ . }}
       </p>
       {{ end }}
 
       <div
-        class="flex flex-wrap items-center gap-2 text-[14px] sm:text-[16px] leading-[20px] sm:leading-[22px] font-medium text-[#7D7D7D]"
+        class="flex flex-wrap items-center gap-2 text-sm sm:text-base leading-[20px] sm:leading-[22px] font-medium text-grey-60"
         style="letter-spacing: -0.02em;">
         <span>By {{ .Params.author | default "Unknown" }}</span>
-        <span class="w-1 h-1 rounded-full bg-[#D9D9D9]"></span>
+        <span class="w-1 h-1 rounded-full bg-grey-75"></span>
         <span>{{ .ReadingTime }} mins read</span>
-        <span class="w-1 h-1 rounded-full bg-[#D9D9D9]"></span>
+        <span class="w-1 h-1 rounded-full bg-grey-75"></span>
         <span>{{ .Date.Format "January 2, 2006" }}</span>
       </div>
 
       <div class="flex items-center gap-2 mt-2">
-        <span class="text-[14px] leading-[20px] font-medium text-[#7D7D7D] font-sans"
+        <span class="text-sm leading-[20px] font-medium text-grey-60 font-sans"
           style="letter-spacing: -0.02em;">
           Share this article
         </span>
@@ -74,7 +74,7 @@
         <!-- Twitter / X Share -->
         <a href="https://x.com/intent/tweet?text={{ .Title }}&url={{ .Permalink }}" target="_blank"
           rel="noopener noreferrer"
-          class="relative w-[38px] h-[38px] rounded border border-[#B4C8F3] flex items-center justify-center">
+          class="relative w-[38px] h-[38px] rounded border border-primary-80 flex items-center justify-center">
           <img src="/images/icon-grid.svg" alt="icon grid" class="absolute inset-0 w-full h-full rounded" />
           <img src="/images/twitter.svg" alt="Share on Twitter" class="relative w-[20.28px] h-[18.33px] z-10" />
         </a>
@@ -82,7 +82,7 @@
         <!-- LinkedIn Share -->
         <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ .Permalink }}&title={{ .Title }}"
           target="_blank" rel="noopener noreferrer"
-          class="relative w-[38px] h-[38px] rounded border border-[#B4C8F3] flex items-center justify-center">
+          class="relative w-[38px] h-[38px] rounded border border-primary-80 flex items-center justify-center">
           <img src="/images/icon-grid.svg" alt="icon grid" class="absolute inset-0 w-full h-full rounded" />
           <img src="/images/linkedin.svg" alt="Share on LinkedIn"
             class="relative w-[20.28px] h-[18.33px] z-10" />
@@ -103,6 +103,31 @@
   </div>
   {{ end }}
 </main>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    
+    const articles = Array.from(document.querySelectorAll('.article-fade'));
+    if (!articles.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => articles.indexOf(a.target) - articles.indexOf(b.target))
+          .forEach((entry, idx) => {
+            setTimeout(() => {
+              entry.target.classList.remove("opacity-0");
+              entry.target.classList.add("animate-fade-in-from-b-0.7");
+              observer.unobserve(entry.target);
+            }, idx * 70); 
+          });
+      },
+      { threshold: 0.08 }
+    );
+    articles.forEach(el => observer.observe(el));
+  });
+</script>
+
 
 {{ partial "pagination.html" . }}
 {{ end }}

@@ -1,105 +1,203 @@
-{{- $categories := .Site.Taxonomies.categories }}
-{{- if gt (len $categories) 0 }}
+{{- $categories := .Site.Taxonomies.categories }} {{- if gt (len $categories) 0
+}}
 
 <!-- Desktop version -->
 <div class="hidden lg:block widget-categories widget">
-  <h4 class="text-[12px] font-digi tracking-wide mb-4">{{ T "categories_title" }}</h4>
-  <div class="flex flex-col gap-3">
-    {{- range $name, $taxonomy := $categories }}
-      {{- with $.Site.GetPage (printf "/categories/%s" $name) }}
-        <div class="h-[22px] flex items-center gap-3 text-[14px] text-grey-90">
-          <a href="{{ .RelPermalink }}" class="hover:text-primary-50">
-            {{ .Title }}
-          </a>
-          {{- if .Site.Params.widgets.categories_counter }}
-            <span class="text-sm text-grey-60">({{ $taxonomy.Count }})</span>
-          {{ end -}}
-        </div>
-      {{- end }}
-    {{- end }}
-  </div>
+	<h4 class="text-xs font-digi tracking-wide mb-4">
+		{{ T "categories_title" }}
+	</h4>
+	<div class="flex flex-col gap-3">
+		{{- range $name, $taxonomy := $categories }} {{- with $.Site.GetPage (printf
+		"/categories/%s" $name) }}
+		<div
+			class="h-[22px] flex items-center gap-3 text-sm text-grey-50 hover:text-grey-60 transition-colors opacity-0 will-change-transform backface-hidden category-fade"
+		>
+			<a href="{{ .RelPermalink }}" class="hover:text-grey-60 font-medium">
+				{{ .Title }}
+			</a>
+			{{- if .Site.Params.widgets.categories_counter }}
+			<span class="text-sm text-grey-60">({{ $taxonomy.Count }})</span> {{ end
+			-}}
+		</div>
+		{{- end }} {{- end }}
+	</div>
 </div>
 
 <!-- Mobile version -->
 <div class="lg:hidden flex-shrink-0 relative">
-  <button
-    id="toggleCategoriesBtn"
-    type="button"
-    class="flex items-center gap-2 px-4 py-2 border rounded-md text-sm font-medium text-gray-700 bg-white shadow"
-    aria-expanded="false"
-    aria-controls="mobileCategoriesList"
-  >
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M3.75 7.5H5.25C6.75 7.5 7.5 6.75 7.5 5.25V3.75C7.5 2.25 6.75 1.5 5.25 1.5H3.75C2.25 1.5 1.5 2.25 1.5 3.75V5.25C1.5 6.75 2.25 7.5 3.75 7.5Z" stroke="#4F4F4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M12.75 7.5H14.25C15.75 7.5 16.5 6.75 16.5 5.25V3.75C16.5 2.25 15.75 1.5 14.25 1.5H12.75C11.25 1.5 10.5 2.25 10.5 3.75V5.25C10.5 6.75 11.25 7.5 12.75 7.5Z" stroke="#4F4F4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M12.75 16.5H14.25C15.75 16.5 16.5 15.75 16.5 14.25V12.75C16.5 11.25 15.75 10.5 14.25 10.5H12.75C11.25 10.5 10.5 11.25 10.5 12.75V14.25C10.5 15.75 11.25 16.5 12.75 16.5Z" stroke="#4F4F4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M3.75 16.5H5.25C6.75 16.5 7.5 15.75 7.5 14.25V12.75C7.5 11.25 6.75 10.5 5.25 10.5H3.75C2.25 10.5 1.5 11.25 1.5 12.75V14.25C1.5 15.75 2.25 16.5 3.75 16.5Z" stroke="#4F4F4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    Categories
-  </button>
+	<button
+		id="toggleCategoriesBtn"
+		type="button"
+		class="flex items-center gap-2 px-3 sm:px-4 py-2 border rounded-md text-sm font-medium text-gray-700 bg-grey-100 shadow"
+		aria-expanded="false"
+		aria-controls="mobileCategoriesList"
+	>
+		<svg
+			width="18"
+			height="18"
+			viewBox="0 0 18 18"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				d="M3.75 7.5H5.25C6.75 7.5 7.5 6.75 7.5 5.25V3.75C7.5 2.25 6.75 1.5 5.25 1.5H3.75C2.25 1.5 1.5 2.25 1.5 3.75V5.25C1.5 6.75 2.25 7.5 3.75 7.5Z"
+				stroke="#4F4F4F"
+				stroke-width="1.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			/>
+			<path
+				d="M12.75 7.5H14.25C15.75 7.5 16.5 6.75 16.5 5.25V3.75C16.5 2.25 15.75 1.5 14.25 1.5H12.75C11.25 1.5 10.5 2.25 10.5 3.75V5.25C10.5 6.75 11.25 7.5 12.75 7.5Z"
+				stroke="#4F4F4F"
+				stroke-width="1.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			/>
+			<path
+				d="M12.75 16.5H14.25C15.75 16.5 16.5 15.75 16.5 14.25V12.75C16.5 11.25 15.75 10.5 14.25 10.5H12.75C11.25 10.5 10.5 11.25 10.5 12.75V14.25C10.5 15.75 11.25 16.5 12.75 16.5Z"
+				stroke="#4F4F4F"
+				stroke-width="1.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			/>
+			<path
+				d="M3.75 16.5H5.25C6.75 16.5 7.5 15.75 7.5 14.25V12.75C7.5 11.25 6.75 10.5 5.25 10.5H3.75C2.25 10.5 1.5 11.25 1.5 12.75V14.25C1.5 15.75 2.25 16.5 3.75 16.5Z"
+				stroke="#4F4F4F"
+				stroke-width="1.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			/>
+		</svg>
+		Categories
+	</button>
 
-  <div
-    id="mobileCategoriesList"
-    class="hidden absolute top-full left-0 mt-2 w-48 transform translate-x-[-30%] bg-white shadow-lg rounded-md border z-50 overflow-y-auto max-h-[70vh]"
-  >
-    <div class="flex flex-col divide-y divide-gray-100">
-      {{- range $name, $taxonomy := $categories }}
-        {{- with $.Site.GetPage (printf "/categories/%s" $name) }}
-        <a href="{{ .RelPermalink }}" class="flex items-center gap-2 px-4 py-2 text-sm text-black hover:bg-gray-100">
-          {{ .Title }}
-          {{- if .Site.Params.widgets.categories_counter }}
-            <span class="ml-auto text-xs text-gray-500">({{ $taxonomy.Count }})</span>
-          {{ end -}}
-        </a>
-        {{- end }}
-      {{- end }}
-    </div>
-  </div>
+	<div
+		id="mobileCategoriesList"
+		class="hidden absolute top-full left-0 mt-2 w-48 transform translate-x-[-36%] bg-grey-100 shadow-lg rounded-md border z-50 overflow-y-auto max-h-[70vh]"
+	>
+		<div class="flex flex-col divide-y divide-gray-100">
+			{{- range $name, $taxonomy := $categories }} {{- with $.Site.GetPage
+			(printf "/categories/%s" $name) }}
+			<a
+				href="{{ .RelPermalink }}"
+				class="flex items-center gap-2 px-4 py-2 text-sm text-grey-10 hover:bg-gray-100 opacity-0 will-change-transform backface-hidden category-fade"
+			>
+				{{ .Title }} {{- if .Site.Params.widgets.categories_counter }}
+				<span class="ml-auto text-xs text-gray-500"
+					>({{ $taxonomy.Count }})</span
+				>
+				{{ end -}}
+			</a>
+			{{- end }} {{- end }}
+		</div>
+	</div>
 </div>
 
-
 <script>
-  function initCategoriesDropdown() {
-    const btn = document.getElementById("toggleCategoriesBtn");
-    const dropdown = document.getElementById("mobileCategoriesList");
+	function initCategoriesDropdown() {
+		const btn = document.getElementById("toggleCategoriesBtn");
+		const dropdown = document.getElementById("mobileCategoriesList");
 
-    if (!btn || !dropdown) return;
+		if (!btn || !dropdown) return;
 
-    // Remove any existing event handler
-    btn.removeEventListener("click", btn._categoryToggleHandler || (() => {}));
-    document.removeEventListener("click", btn._clickOutsideHandler || (() => {}));
+		// Remove any existing event handler
+		btn.removeEventListener("click", btn._categoryToggleHandler || (() => {}));
+		document.removeEventListener(
+			"click",
+			btn._clickOutsideHandler || (() => {})
+		);
 
-    // Toggle handler
-    btn._categoryToggleHandler = (e) => {
-      const isHidden = dropdown.classList.contains("hidden");
-      dropdown.classList.toggle("hidden", !isHidden);
-      btn.setAttribute("aria-expanded", String(isHidden));
-    };
+		// Toggle handler
+		btn._categoryToggleHandler = (e) => {
+			const isHidden = dropdown.classList.contains("hidden");
+			dropdown.classList.toggle("hidden", !isHidden);
+			btn.setAttribute("aria-expanded", String(isHidden));
+		};
 
-    // Click outside handler
-    btn._clickOutsideHandler = (e) => {
-      if (
-        !dropdown.classList.contains("hidden") &&
-        !dropdown.contains(e.target) &&
-        !btn.contains(e.target)
-      ) {
-        dropdown.classList.add("hidden");
-        btn.setAttribute("aria-expanded", "false");
-      }
-    };
+		// Click outside handler
+		btn._clickOutsideHandler = (e) => {
+			if (
+				!dropdown.classList.contains("hidden") &&
+				!dropdown.contains(e.target) &&
+				!btn.contains(e.target)
+			) {
+				dropdown.classList.add("hidden");
+				btn.setAttribute("aria-expanded", "false");
+			}
+		};
 
-    btn.addEventListener("click", btn._categoryToggleHandler);
-    document.addEventListener("click", btn._clickOutsideHandler);
-  }
+		btn.addEventListener("click", btn._categoryToggleHandler);
+		document.addEventListener("click", btn._clickOutsideHandler);
+	}
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initCategoriesDropdown);
-  } else {
-    initCategoriesDropdown();
-  }
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", initCategoriesDropdown);
+	} else {
+		initCategoriesDropdown();
+	}
 </script>
 
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		// Desktop
+		const categoryItems = Array.from(
+			document.querySelectorAll(".widget-categories .category-fade")
+		);
+		if (categoryItems.length) {
+			const observer = new IntersectionObserver(
+				(entries, observer) => {
+					entries
+						.filter((entry) => entry.isIntersecting)
+						.sort(
+							(a, b) =>
+								categoryItems.indexOf(a.target) -
+								categoryItems.indexOf(b.target)
+						)
+						.forEach((entry, idx) => {
+							setTimeout(() => {
+								entry.target.classList.remove("opacity-0");
+								entry.target.classList.add("animate-fade-in-from-b-0.7");
+								observer.unobserve(entry.target);
+							}, idx * 70); // Change 70 for faster/slower stagger
+						});
+				},
+				{ threshold: 0.1 }
+			);
+			categoryItems.forEach((el) => observer.observe(el));
+		}
 
-
+		// Mobile Dropdown: Animate on open
+		const mobileBtn = document.getElementById("toggleCategoriesBtn");
+		const mobileList = document.getElementById("mobileCategoriesList");
+		if (mobileBtn && mobileList) {
+			mobileBtn.addEventListener("click", function () {
+				// Delay so dropdown is visible first
+				setTimeout(() => {
+					const mobCategoryLinks = Array.from(
+						mobileList.querySelectorAll(".category-fade")
+					);
+					mobCategoryLinks.forEach((el, idx) => {
+						setTimeout(() => {
+							el.classList.remove("opacity-0");
+							el.classList.add("animate-fade-in-from-b-0.7");
+						}, idx * 50);
+					});
+				}, 100);
+			});
+			// Optional: Reset state on close
+			document.addEventListener("click", function (e) {
+				if (!mobileList.contains(e.target) && !mobileBtn.contains(e.target)) {
+					const mobCategoryLinks = Array.from(
+						mobileList.querySelectorAll(".category-fade")
+					);
+					mobCategoryLinks.forEach((el) => {
+						el.classList.remove("animate-fade-in-from-b-0.7");
+						el.classList.add("opacity-0");
+					});
+				}
+			});
+		}
+	});
+</script>
 
 {{- end }}

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html class="no-js" lang="{{ .Site.Language.Lang }}">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ block "title" . }}{{ if not .IsHome }}{{ .Title }} - {{ end }}{{ .Site.Title }}{{ end }}</title>
-  <script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-  <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Params.Description }}{{ end }}">
+  <script>(function (d, e) { d[e] = d[e].replace("no-js", "js"); })(document.documentElement, "className");</script>
+  <meta name="description"
+    content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Params.Description }}{{ end }}">
   {{- if .Site.Params.opengraph }}{{ template "_internal/opengraph.html" . }}{{- end }}
   {{- if .Site.Params.schema }}{{ template "_internal/schema.html" . }}{{- end }}
   {{- if .Site.Params.twitter_cards }}{{ template "_internal/twitter_cards.html" . }}{{- end }}
@@ -16,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link rel="stylesheet" {{ printf `href="%s"` $googleFontsLink | safeHTMLAttr }}>
+  <link rel="stylesheet" {{ printf `href="%s" ` $googleFontsLink | safeHTMLAttr }}>
   {{- end }}
 
   <style>
@@ -33,22 +35,19 @@
       border-color: white;
     }
 
-    body[data-page="home"] #mobile-menu-button {
-      background-color: white;
-      color: black;
-      border-color: white;
-    }
 
     @media only screen and (max-width: 1024px) {
       body[data-page="home"] #nav-inner {
         margin-top: 0rem;
       }
     }
+
     @media only screen and (max-width: 768px) {
       body[data-page="home"] #nav-inner {
         margin-top: 1rem;
       }
     }
+
     @media only screen and (max-width: 640px) {
       body[data-page="home"] #nav-inner {
         margin-top: 0rem;
@@ -63,53 +62,60 @@
   {{- end }}
 
   {{- with .OutputFormats.Get "rss" }}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+  {{ printf `
+  <link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
   {{- end }}
 
-{{ $progress := resources.Get "js/progressBar.js" }}
-{{ $navbar := resources.Get "js/navbar.js" }}
-{{ $combined := slice $progress $navbar | resources.Concat "js/combined.js" | js.Build | minify }}
-<script src="{{ $combined.RelPermalink }}" defer></script>
+  {{ $progress := resources.Get "js/progressBar.js" }}
+  {{ $navbar := resources.Get "js/navbar.js" }}
+  {{ $combined := slice $progress $navbar | resources.Concat "js/combined.js" | js.Build | minify }}
+  <script src="{{ $combined.RelPermalink }}" defer></script>
 
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
+  <link rel="shortcut icon" href="{{ " favicon.ico" | relURL }}">
 
   {{- $server := "" }}
   {{- if gt (int (index (split hugo.Version ".") 1)) "120" }}
-    {{ $server = hugo.IsServer }}
+  {{ $server = hugo.IsServer }}
   {{- else }}
-    {{ $server = .Site.IsServer }}
+  {{ $server = .Site.IsServer }}
   {{- end }}
   {{- if not $server }}
-    {{ template "_internal/google_analytics.html" . }}
+  {{ template "_internal/google_analytics.html" . }}
   {{- end }}
 </head>
+
 <body class="body font-sans" data-page="{{ if .IsHome }}home{{ else }}internal{{ end }}">
-  <div class="w-full p-4 lg:p-10">
+  <div class="w-full lg:p-10">
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
     <!-- {{ partial "hero.html" . }} -->
     {{ if .IsHome }}
-      {{ partial "hero.html" . }}
+    {{ partial "hero.html" . }}
     {{ end }}
 
 
     <!-- Mobile: Search + Categories Horizontal Row -->
     {{ if or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") (eq .RelPermalink "/search/") }}
-      <div class="lg:hidden {{ if not .IsHome }}pt-0{{ else }}pt-10{{ end }} sm:pt-0 max-w-screen-xl mx-auto flex items-center gap-3 px-2 {{ if not .IsHome }}mt-[90px]{{ end }}">
-        {{ partial "widgets/search.html" . }}
-        {{ partial "widgets/categories.html" . }}
-      </div>
+    <div
+      class="lg:hidden {{ if not .IsHome }}pt-0{{ else }}pt-10{{ end }} sm:pt-0 max-w-screen-xl mx-auto flex items-center gap-3 px-6 {{ if not .IsHome }}mt-[90px]{{ end }}">
+      {{ partial "widgets/search.html" . }}
+      {{ partial "widgets/categories.html" . }}
+    </div>
     {{ end }}
 
 
     <!-- Main layout with Sidebar and Content for Desktop -->
-    <div class=" flex {{ if eq .Site.Params.sidebarPosition "right" }}flex-row-reverse{{ else }}flex-row{{ end }} pt-6 gap-4 max-w-screen-xl mx-auto px-2 {{ if not .IsHome }}mt-0 lg:mt-[90px]{{ end }}">
+    <div class=" flex {{ if eq .Site.Params.sidebarPosition " right" }}flex-row-reverse{{ else }}flex-row{{ end }} pt-6
+      gap-4 max-w-screen-xl mx-auto px-6 {{ if not .IsHome }}mt-0 lg:mt-[90px]{{ end }}">
+      {{ if not .IsPage }}
       <aside class="hidden lg:block w-full md:w-[280px] flex-shrink-0">
         {{ block "sidebar" . }}{{ partial "sidebar.html" . }}{{ end }}
       </aside>
+      {{ end }}
 
-      <main class="flex-1 {{ if not (or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") (eq .RelPermalink "/search/")) }}mt-[50px] sm:mt-0{{ end }}">
+      <main class="flex-1 {{ if not (or .IsHome (eq .Kind " taxonomy") (eq .Kind "term" ) (eq .RelPermalink "/search/"
+        )) }}mt-[50px] sm:mt-0{{ end }}">
         {{ block "main" . }}
         {{ with .Content }}
         <div class="content main__content clearfix">
@@ -123,7 +129,7 @@
 
   {{ block "footer" . }}{{ partial "footer.html" . }}{{ end }}
 
-  <script async defer src="{{ "js/menu.js" | relURL }}"></script>
+  <script async defer src="{{ " js/menu.js" | relURL }}"></script>
   {{ range .Site.Params.customJS -}}
   <script src="{{ . | relURL }}"></script>
   {{- end }}
@@ -131,4 +137,5 @@
   <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
 
 </body>
+
 </html>

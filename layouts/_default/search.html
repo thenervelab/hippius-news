@@ -2,19 +2,23 @@
 <main class="main list" role="main">
   {{ $query := .Site.Params.query }}
   <header class="main__header mb-8">
-    <h1 id="search-title" class="main__title text-[24px] sm:text-[32px] font-medium text-[#0A0A0A]">
+    <h1
+      id="search-title"
+      class="main__title text-2xl sm:text-[32px] font-medium text-grey-10"
+    >
       Search results for ""
     </h1>
-
   </header>
 
   <div id="search-results" class="flex flex-col gap-6"></div>
 </main>
 
 <script>
-  const exactQuery = new URLSearchParams(window.location.search).get('q');
-  const query = new URLSearchParams(window.location.search).get('q')?.toLowerCase();
-  const container = document.getElementById('search-results');
+  const exactQuery = new URLSearchParams(window.location.search).get("q");
+  const query = new URLSearchParams(window.location.search)
+    .get("q")
+    ?.toLowerCase();
+  const container = document.getElementById("search-results");
 
   // Set the heading dynamically
   const searchTitle = document.getElementById("search-title");
@@ -28,75 +32,82 @@
     searchInput.value = exactQuery;
   }
 
-  fetch('/index.json')
-    .then(response => response.json())
-    .then(data => {
-      const results = data.filter(post =>
-        post.title.toLowerCase().includes(query) ||
-        post.summary.toLowerCase().includes(query) ||
-        post.excerpt.toLowerCase().includes(query)
+  fetch("/index.json")
+    .then((response) => response.json())
+    .then((data) => {
+      const results = data.filter(
+        (post) =>
+          post.title.toLowerCase().includes(query) ||
+          post.summary.toLowerCase().includes(query) ||
+          post.excerpt.toLowerCase().includes(query)
       );
 
       if (results.length === 0) {
-        container.innerHTML = `<p class="text-gray-600">No results found for "${exactQuery}".</p>`;
+        container.innerHTML = `<p class="text-grey-50">No results found for "${exactQuery}".</p>`;
         return;
       }
 
-      results.forEach(post => {
-        const article = document.createElement('article');
-        article.className = 'flex flex-col md:flex-row gap-6 mb-6';
+      results.forEach((post) => {
+        const article = document.createElement("article");
+        article.className = "flex flex-col md:flex-row gap-5 mb-6 opacity-0 will-change-transform backface-hidden search-article-section";
 
         const thumbnailHTML = post.thumbnail
           ? `
             <div class="w-full md:w-[280px] flex-shrink-0">
-              <a href="${post.permalink}" class="block w-full aspect-square overflow-hidden rounded border">
+              <a href="${post.permalink}" class="block w-full aspect-square overflow-hidden rounded border md:h-auto h-[212px]">
                 <img src="${post.thumbnail}" alt="${post.title} thumbnail" class="object-cover w-full h-full">
               </a>
             </div>
           `
-          : '';
+          : "";
 
         article.innerHTML = `
           ${thumbnailHTML}
           <div class="flex flex-col gap-2">
-            <h2 class="text-[22px] sm:text-[24px] leading-[30px] sm:leading-[32px] font-medium text-[#0A0A0A] mt-2"
+            <h2 class="text-[22px] sm:text-2xl leading-[30px] sm:leading-[32px] font-medium text-grey-10 mt-2 hover:text-primary-50 transition-colors duration-200"
               style="letter-spacing: 0;">
-              <a href="${post.permalink}" class="hover:underline">${post.title}</a>
+              <a href="${post.permalink}" >${
+          post.title
+        }</a>
             </h2>
 
-            <p class="text-[14px] sm:text-[16px] leading-[20px] sm:leading-[22px] font-medium text-[#353535]"
+            <p class="text-sm sm:text-base leading-[20px] sm:leading-[22px] font-medium text-grey-40"
               style="letter-spacing: -0.02em;">
               ${post.summary}
             </p>
 
             <div
-              class="flex flex-wrap items-center gap-2 text-[14px] sm:text-[16px] leading-[20px] sm:leading-[22px] font-medium text-[#7D7D7D]"
+              class="flex flex-wrap items-center gap-2 text-sm sm:text-base leading-[20px] sm:leading-[22px] font-medium text-grey-60"
               style="letter-spacing: -0.02em;">
-              <span>By ${post.author || 'Unknown'}</span>
-              <span class="w-1 h-1 rounded-full bg-[#D9D9D9]"></span>
-              <span>${post.readingTime || '1'} mins read</span>
-              <span class="w-1 h-1 rounded-full bg-[#D9D9D9]"></span>
-              <span>${post.date || ''}</span>
+              <span>By ${post.author || "Unknown"}</span>
+              <span class="w-1 h-1 rounded-full bg-grey-75"></span>
+              <span>${post.readingTime || "1"} mins read</span>
+              <span class="w-1 h-1 rounded-full bg-grey-75"></span>
+              <span>${post.date || ""}</span>
             </div>
 
             <div class="flex items-center gap-2 mt-2">
-              <span class="text-[14px] leading-[20px] font-medium text-[#7D7D7D] font-sans"
+              <span class="text-sm leading-[20px] font-medium text-grey-60 font-sans"
                 style="letter-spacing: -0.02em;">
                 Share this article
               </span>
             </div>
 
             <div class="flex items-center gap-2">
-              <a href="https://x.com/intent/tweet?text=${post.title}&url=${post.permalink}" target="_blank"
+              <a href="https://x.com/intent/tweet?text=${post.title}&url=${
+          post.permalink
+        }" target="_blank"
                 rel="noopener noreferrer"
-                class="relative w-[38px] h-[38px] rounded border border-[#B4C8F3] flex items-center justify-center">
+                class="relative w-[38px] h-[38px] rounded border border-primary-80 flex items-center justify-center">
                 <img src="/images/icon-grid.svg" alt="icon grid" class="absolute inset-0 w-full h-full rounded" />
                 <img src="/images/twitter.svg" alt="Share on Twitter" class="relative w-[20.28px] h-[18.33px] z-10" />
               </a>
 
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=${post.permalink}&title=${post.title}"
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=${
+                post.permalink
+              }&title=${post.title}"
                 target="_blank" rel="noopener noreferrer"
-                class="relative w-[38px] h-[38px] rounded border border-[#B4C8F3] flex items-center justify-center">
+                class="relative w-[38px] h-[38px] rounded border border-primary-80 flex items-center justify-center">
                 <img src="/images/icon-grid.svg" alt="icon grid" class="absolute inset-0 w-full h-full rounded" />
                 <img src="/images/linkedin.svg" alt="Share on LinkedIn"
                   class="relative w-[20.28px] h-[18.33px] z-10" />
@@ -107,7 +118,39 @@
 
         container.appendChild(article);
       });
+      setTimeout(() => {
+        const searchSections = Array.from(
+          document.querySelectorAll(".search-article-section")
+        );
+        if (!searchSections.length) return;
+        let animatedIndexes = new Set();
 
+        const observer = new IntersectionObserver(
+          (entries, observer) => {
+            entries
+              .filter((entry) => entry.isIntersecting)
+              .sort(
+                (a, b) =>
+                  searchSections.indexOf(a.target) -
+                  searchSections.indexOf(b.target)
+              )
+              .forEach((entry, idx) => {
+                const sectionIdx = searchSections.indexOf(entry.target);
+                if (!animatedIndexes.has(sectionIdx)) {
+                  setTimeout(() => {
+                    entry.target.classList.remove("opacity-0");
+                    entry.target.classList.add("animate-fade-in-from-b-0.7");
+                    observer.unobserve(entry.target);
+                  }, idx * 120);
+                  animatedIndexes.add(sectionIdx);
+                }
+              });
+          },
+          { threshold: 0.1 }
+        );
+
+        searchSections.forEach((section) => observer.observe(section));
+      }, 100);
     });
 </script>
 {{ end }}

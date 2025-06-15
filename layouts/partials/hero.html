@@ -1,20 +1,54 @@
-<!-- layouts/partials/hero.html -->
-<section class="relative h-[386px] w-full overflow-hidden flex items-center justify-center md:p-5 sm:mb-[56px] rounded bg-[url('/images/grid-bg.svg')] bg-no-repeat bg-cover bg-center">
+<section
+  class="relative h-[386px] w-full overflow-hidden flex items-center justify-center md:p-5 sm:mb-[56px] lg:rounded bg-[url('/images/grid-bg.svg')] bg-no-repeat bg-cover bg-center"
+>
+  <div
+    class="relative z-10 text-center opacity-0 will-change-transform backface-hidden"
+    id="footer-section"
+  >
+    <h1 class="text-4xl md:text-6xl font-bold leading-tight text-grey-100">
+      Hippius News
+    </h1>
+  </div>
 
-    <!-- Hero Content -->
-    <div class="relative z-10 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold leading-tight text-white">
-            Hippius News
-        </h1>
-    </div>
+  <div
+    class="absolute flex items-center justify-center bottom-4 lg:bottom-10 left-4 lg:left-10 size-20"
+  >
+    <img
+      src="/images/circular-bittensor.svg"
+      class="absolute animate-spin"
+      style="animation-duration: 10s"
+      alt="Circular Bittensor"
+    />
+    <img
+      src="/images/bittensor-logo.svg"
+      class="size-5 absolute"
+      alt="Bittensor Logo"
+    />
+  </div>
 
-    <!-- Bottom Left Circular Animation -->
-    <div class="absolute flex items-center justify-center bottom-4 lg:bottom-10 left-4 lg:left-10 size-20">
-        <img src="/images/circular-bittensor.svg" class="absolute animate-spin" style="animation-duration: 10s"
-            alt="Circular Bittensor" />
-        <img src="/images/bittensor-logo.svg" class="size-5 absolute" alt="Bittensor Logo" />
-    </div>
-
-    <!-- Bottom Right Corner Decoration -->
-    <div class="absolute bottom-4 lg:bottom-10 right-4 lg:right-10 border-r-2 size-10 border-b-2 border-[#6f95e8] lg:border-white rounded-br"></div>
+  <div
+    class="absolute bottom-4 lg:bottom-10 right-4 lg:right-10 border-r-2 size-10 border-b-2 border-primary-65 lg:border-grey-100 rounded-br "
+  ></div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const nav = document.getElementById("footer-section");
+    let hasAnimated = false;
+
+    if (nav) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            nav.classList.remove("opacity-0");
+            nav.classList.add("animate-fade-in-from-b-0.7");
+            hasAnimated = true;
+            observer.unobserve(nav);
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(nav);
+    }
+  });
+</script>

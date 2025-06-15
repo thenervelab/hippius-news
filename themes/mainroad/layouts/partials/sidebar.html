@@ -10,7 +10,7 @@
 {{- if $sidebar -}}
 <div class="space-y-4">
 	<!-- Sidebar Part 1: Search + Categories -->
-	<aside class="sidebar{{ if eq $sidebar "left" }} sidebar--left{{ end }}">
+	<aside class="sidebar-section opacity-0 will-change-transform backface-hidden sidebar{{ if eq $sidebar "left" }} sidebar--left{{ end }}">
 		{{- $root := . }}
 		{{- with (default .Site.Params.sidebar.widgets .Params.widgets) }}
 			{{- range $widget := . }}
@@ -31,7 +31,7 @@
 	</aside>
 
 	<!-- Sidebar Part 2: Tags Only (Hidden on small screens) -->
-	<aside class="hidden md:block sidebar{{ if eq $sidebar "left" }} sidebar--left{{ end }}">
+	<aside class="sidebar-section opacity-0 will-change-transform backface-hidden hidden md:block sidebar{{ if eq $sidebar "left" }} sidebar--left{{ end }}">
 		{{- $root := . }}
 		{{- with (default .Site.Params.sidebar.widgets .Params.widgets) }}
 			{{- range $widget := . }}
@@ -51,4 +51,33 @@
 		{{- end }}
 	</aside>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sidebars = Array.from(document.querySelectorAll(".sidebar-section"));
+    let animatedIndexes = new Set();
+
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => sidebars.indexOf(a.target) - sidebars.indexOf(b.target))
+          .forEach((entry, idx) => {
+            const sbIdx = sidebars.indexOf(entry.target);
+            if (!animatedIndexes.has(sbIdx)) {
+              setTimeout(() => {
+                entry.target.classList.remove("opacity-0");
+                entry.target.classList.add("animate-fade-in-from-b-0.7");
+                observer.unobserve(entry.target);
+              }, idx * 120);
+              animatedIndexes.add(sbIdx);
+            }
+          });
+      },
+      { threshold: 0.08 }
+    );
+
+    sidebars.forEach(sb => observer.observe(sb));
+  });
+</script>
+
 {{- end }}

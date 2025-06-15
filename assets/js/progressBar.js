@@ -2,17 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const tocBtn = document.getElementById('toc-toggle');
   const tocPanel = document.getElementById('toc-panel');
   const tocClose = document.getElementById('toc-close');
-  const readProgress = document.getElementById('read-progress');
-  const circle = document.getElementById('progress-circle');
+  const readProgress = document.querySelectorAll('.read-progress');
+  const circleMobile = document.getElementById('progress-circle-mobile');
+  const circleDesktop = document.getElementById('progress-circle-desktop');
   const tocLinks = document.querySelectorAll('#toc-panel a');
   const content = document.querySelector('.post__content');
 
-  if (!tocBtn || !tocPanel || !tocClose || !circle || !readProgress || !content) return;
+  if (!tocBtn || !tocPanel || !tocClose || !circleMobile||!circleDesktop || !readProgress || !content) return;
 
   // Toggle TOC
   tocBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    tocPanel.classList.toggle('hidden');
+    if (window.matchMedia("(max-width: 768px)").matches){
+      tocPanel.classList.toggle('hidden');
+    }
   });
 
   // Close TOC
@@ -35,14 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const progress = Math.min(100, Math.max(0, (scrolled / total) * 100));
 
     // Text update
-    readProgress.innerText = `${Math.round(progress)}%`;
+    readProgress.forEach((element) => {
+      element.textContent = `${Math.round(progress)}%`;
+    });
 
     // Circle update
     const radius = 22;
     const circumference = 2 * Math.PI * radius;
     const offset = circumference - (progress / 100) * circumference;
-    circle.style.strokeDasharray = `${circumference}`;
-    circle.style.strokeDashoffset = offset;
+    circleMobile.style.strokeDasharray = `${circumference}`;
+    circleMobile.style.strokeDashoffset = offset;
+    circleDesktop.style.strokeDasharray = `${circumference}`;
+    circleDesktop.style.strokeDashoffset = offset;
 
     // Active TOC
     let current = null;

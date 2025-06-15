@@ -1,108 +1,290 @@
+// navbar.js
+
 document.addEventListener("DOMContentLoaded", () => {
   const navInner = document.getElementById("nav-inner");
+  const navOuter = document.getElementById("nav-outer");
+  const navLinks = document.getElementById("nav-links"); // guard added
   const dashboardBtn = document.getElementById("dashboard-btn");
+  const dashboardInnerBtn = document.getElementById("dashboard-inner-btn");
   const menuBtn = document.getElementById("mobile-menu-button");
   const menuDialog = document.getElementById("mobile-menu-dialog");
   const menuClose = document.getElementById("mobile-menu-close");
+  const joinNetwork = document.getElementById("join-network"); // guard added
   const pageType = document.body.dataset.page;
 
-  if (!navInner || !dashboardBtn || !menuBtn) return;
+  // if any of these core elements is missing, bail out
+  if (!navInner || !navOuter || !dashboardBtn || !menuBtn) return;
 
-  // Mobile menu toggle
+  // Only toggle the mobile menu if all three exist
   if (menuBtn && menuDialog && menuClose) {
-    menuBtn.addEventListener("click", () => {
+    // helper to open the menu and lock page scroll
+    const openMenu = () => {
       menuDialog.classList.remove("hidden");
-    });
-    menuClose.addEventListener("click", () => {
+      // lock scroll
+      document.body.style.overflow = "hidden";
+    };
+
+    // helper to close the menu and restore scroll
+    const closeMenu = () => {
       menuDialog.classList.add("hidden");
+      document.body.style.overflow = "";
+    };
+
+    menuBtn.addEventListener("click", openMenu);
+    menuClose.addEventListener("click", closeMenu);
+
+    menuDialog.addEventListener("click", (e) => {
+      if (e.target === menuDialog) {
+        closeMenu();
+      }
     });
   }
 
   const getResponsiveMarginTop = () => {
-    if (window.matchMedia("(max-width: 640px)").matches) {
+    if (window.matchMedia("(max-width: 768px)").matches) {
       return "0rem";
-    } else if (window.matchMedia("(max-width: 768px)").matches) {
-      return "1rem";
     } else if (window.matchMedia("(max-width: 1024px)").matches) {
-      return "0rem";
-    } else {
-      return "3rem"; // default for large screens
+      return "0.5rem";
     }
+    return "2.5rem";
   };
 
-  const applyScrolledStyles = () => {
-    navInner.classList.add("bg-white", "shadow-md", "text-black", "mt-0");
-    navInner.classList.remove("bg-transparent", "text-white", "lg:mt-12");
+  function applyScrolledStyles() {
+    navInner.classList.add(
+      "bg-grey-100",
+      "lg:shadow-md",
+      "text-grey-10",
+      "mt-0"
+    );
+    navInner.classList.remove("bg-transparent", "text-grey-100", "lg:mt-12");
 
-    navInner.style.setProperty("background-color", "#fff", "important");
-    navInner.style.setProperty("color", "#000", "important");
-    navInner.style.setProperty("margin-top", window.matchMedia("(max-width: 640px)").matches ? "0" : window.matchMedia("(max-width: 768px)").matches ? "1rem": "0", "important");
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    if (isDesktop) {
+      navInner.style.setProperty(
+        "background-image",
+        "url('/images/header-bg.svg')",
+        "important"
+      );
+      navInner.style.setProperty("background-size", "auto 100%", "important");
+      navInner.style.setProperty("background-repeat", "repeat-x", "important");
+      navInner.style.setProperty(
+        "background-position",
+        "left center",
+        "important"
+      );
+    } else {
+      navInner.style.removeProperty("background-image");
+      navInner.style.removeProperty("background-size");
+      navInner.style.removeProperty("background-position");
+    }
 
-    dashboardBtn.style.setProperty("background-color", "#3366FF", "important");
-    dashboardBtn.style.setProperty("color", "#fff", "important");
-    dashboardBtn.style.setProperty("border-color", "#3366FF", "important");
+    // fallback/background colors for different breakpoints
+    navOuter.style.setProperty(
+      "background-color",
+      window.matchMedia("(max-width: 1024px)").matches
+        ? "rgb(var(--primary-50) / 1)"
+        : "transparent",
+      "important"
+    );
+    navInner.style.setProperty(
+      "background-color",
+      window.matchMedia("(max-width: 1024px)").matches
+        ? "rgb(var(--primary-50) / 1)"
+        : "rgb(var(--grey-100) / 1)",
+      "important"
+    );
+    navInner.style.setProperty(
+      "color",
+      window.matchMedia("(max-width: 1024px)").matches
+        ? "rgb(var(--grey-100) / 1)"
+        : "rgb(var(--grey-10) / 1)",
+      "important"
+    );
+    navInner.style.setProperty(
+      "margin-top",
+      window.matchMedia("(max-width: 640px)").matches
+        ? "0"
+        : window.matchMedia("(max-width: 768px)").matches
+        ? "1rem"
+        : "0",
+      "important"
+    );
 
+    // only style these if they actually exist
+    if (navLinks) {
+      navLinks.style.setProperty(
+        "color",
+        window.matchMedia("(max-width: 1024px)").matches
+          ? "rgb(var(--grey-100) / 1)"
+          : "rgb(var(--grey-40) / 1)",
+        "important"
+      );
+      navLinks.style.setProperty(
+        "font-weight",
+        window.matchMedia("(max-width: 1024px)").matches ? "500" : "400",
+        "important"
+      );
+    }
+    if (joinNetwork) {
+      joinNetwork.style.setProperty(
+        "font-weight",
+        window.matchMedia("(max-width: 1024px)").matches ? "600" : "500",
+        "important"
+      );
+    }
+
+    dashboardBtn.style.setProperty(
+      "background-color",
+      "rgb(var(--primary-50) / 1)",
+      "important"
+    );
+    dashboardBtn.style.setProperty(
+      "color",
+      "rgb(var(--grey-100) / 1)",
+      "important"
+    );
+    dashboardBtn.style.setProperty(
+      "border-color",
+      "rgb(var(--primary-50) / 1)",
+      "important"
+    );
     dashboardBtn.onmouseenter = () => {
-      dashboardBtn.style.setProperty("background-color", "#1f51be", "important");
-      dashboardBtn.style.setProperty("color", "#fff", "important");
+      dashboardBtn.style.setProperty(
+        "background-color",
+        "rgb(var(--primary-40) / 1)",
+        "important"
+      );
     };
     dashboardBtn.onmouseleave = () => {
-      dashboardBtn.style.setProperty("background-color", "#3366FF", "important");
-      dashboardBtn.style.setProperty("color", "#fff", "important");
+      dashboardBtn.style.setProperty(
+        "background-color",
+        "rgb(var(--primary-50) / 1)",
+        "important"
+      );
     };
+    if (dashboardInnerBtn) {
+      dashboardInnerBtn.style.setProperty(
+        "background-color",
+        "rgb(var(--primary-50) / 1)",
+        "important"
+      );
+      dashboardInnerBtn.style.setProperty(
+        "color",
+        "rgb(var(--grey-100) / 1)",
+        "important"
+      );
+      dashboardInnerBtn.style.setProperty(
+        "border",
+        "1px solid #1F51BE",
+        "important"
+      );
+    }
+    document.querySelectorAll(".nav-link.active").forEach((link) => {
+      link.style.removeProperty("border-bottom");
+      link.classList.add("border-b", "border-primary-50");
+    });
+  }
 
-    menuBtn.style.setProperty("background-color", "#3366FF", "important");
-    menuBtn.style.setProperty("color", "#fff", "important");
-    menuBtn.style.setProperty("border-color", "#3366FF", "important");
+  function applyTransparentStyles() {
+    navInner.classList.remove(
+      "bg-grey-100",
+      "lg:shadow-md",
+      "text-grey-10",
+      "mt-0"
+    );
+    navInner.classList.add("bg-transparent", "text-grey-100", "lg:mt-12");
 
-    menuBtn.onmouseenter = () => {
-      menuBtn.style.setProperty("background-color", "#1f51be", "important");
-      menuBtn.style.setProperty("color", "#fff", "important");
-    };
-    menuBtn.onmouseleave = () => {
-      menuBtn.style.setProperty("background-color", "#3366FF", "important");
-      menuBtn.style.setProperty("color", "#fff", "important");
-    };
-  };
+    navInner.style.removeProperty("background-image");
+    navInner.style.removeProperty("background-size");
+    navInner.style.removeProperty("background-position");
 
-  const applyTransparentStyles = () => {
-    navInner.classList.remove("bg-white", "shadow-md", "text-black", "mt-0");
-    navInner.classList.add("bg-transparent", "text-white", "lg:mt-12");
-
-    const responsiveMargin = getResponsiveMarginTop();
+    const mtop = getResponsiveMarginTop();
     navInner.style.setProperty("background-color", "transparent", "important");
-    navInner.style.setProperty("color", "#fff", "important");
-    navInner.style.setProperty("margin-top", responsiveMargin, "important");
+    navInner.style.setProperty(
+      "color",
+      "rgb(var(--grey-100) / 1)",
+      "important"
+    );
+    navInner.style.setProperty("margin-top", mtop, "important");
 
-    dashboardBtn.style.setProperty("background-color", "#fff", "important");
-    dashboardBtn.style.setProperty("color", "#000", "important");
-    dashboardBtn.style.setProperty("border-color", "#fff", "important");
+    if (navLinks) {
+      // reset nav-links to transparent state
+      navLinks.style.setProperty(
+        "color",
+        "rgb(var(--grey-100) / 1)",
+        "important"
+      );
+      navLinks.style.setProperty("font-weight", "400", "important");
+    }
+    if (joinNetwork) {
+      joinNetwork.style.setProperty("font-weight", "500", "important");
+    }
 
+    if (dashboardInnerBtn) {
+      dashboardInnerBtn.style.setProperty(
+        "background-color",
+        "rgb(var(--grey-100) / 1)",
+        "important"
+      );
+      dashboardInnerBtn.style.setProperty(
+        "border",
+        "1px solid rgb(var(--grey-100) / 1)",
+        "important"
+      );
+      dashboardInnerBtn.style.setProperty(
+        "color",
+        "rgb(var(--grey-10) / 1)",
+        "important"
+      );
+    }
+
+    dashboardBtn.style.setProperty(
+      "background-color",
+      "rgb(var(--grey-100) / 1)",
+      "important"
+    );
+    dashboardBtn.style.setProperty(
+      "color",
+      "rgb(var(--grey-10) / 1)",
+      "important"
+    );
+    dashboardBtn.style.setProperty(
+      "border-color",
+      "rgb(var(--grey-100) / 1)",
+      "important"
+    );
     dashboardBtn.onmouseenter = () => {
-      dashboardBtn.style.setProperty("background-color", "#e3e3e3", "important");
-      dashboardBtn.style.setProperty("color", "#000", "important");
+      dashboardBtn.style.setProperty(
+        "background-color",
+        "rgb(var(--grey-80) / 1)",
+        "important"
+      );
+      dashboardBtn.style.setProperty(
+        "color",
+        "rgb(var(--grey-10) / 1)",
+        "important"
+      );
     };
     dashboardBtn.onmouseleave = () => {
-      dashboardBtn.style.setProperty("background-color", "#fff", "important");
-      dashboardBtn.style.setProperty("color", "#000", "important");
+      dashboardBtn.style.setProperty(
+        "background-color",
+        "rgb(var(--grey-100) / 1)",
+        "important"
+      );
+      dashboardBtn.style.setProperty(
+        "color",
+        "rgb(var(--grey-10) / 1)",
+        "important"
+      );
     };
-
-    menuBtn.style.setProperty("background-color", "#fff", "important");
-    menuBtn.style.setProperty("color", "#000", "important");
-    menuBtn.style.setProperty("border-color", "#fff", "important");
-
-    menuBtn.onmouseenter = () => {
-      menuBtn.style.setProperty("background-color", "#e3e3e3", "important");
-      menuBtn.style.setProperty("color", "#000", "important");
-    };
-    menuBtn.onmouseleave = () => {
-      menuBtn.style.setProperty("background-color", "#fff", "important");
-      menuBtn.style.setProperty("color", "#000", "important");
-    };
-  };
-
-
-
+    document.querySelectorAll(".nav-link.active").forEach((link) => {
+      link.style.setProperty(
+        "border-bottom",
+        "1px solid rgb(var(--grey-100) / 1)",
+        "important"
+      );
+    });
+  }
 
   if (pageType === "home") {
     const onScroll = () => {
@@ -113,27 +295,110 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    // Initial check
+    // run once, then wire up scroll & resize
     setTimeout(() => {
       navInner.style.transition = "all 0.3s ease";
       onScroll();
       window.addEventListener("scroll", onScroll);
-
-      // Listen for window resize to re-apply responsive styles
-      window.addEventListener("resize", () => {
-        if (window.scrollY <= 50) {
-          applyTransparentStyles();
-        } else {
-          applyScrolledStyles();
-        }
-      });
+      window.addEventListener("resize", onScroll);
     }, 0);
   } else {
+    // non-home pages: always scrolled
     applyScrolledStyles();
-    window.addEventListener("resize", () => {
-      applyScrolledStyles();
-
-    });
-
+    window.addEventListener("resize", applyScrolledStyles);
   }
+
+  // highlight your “active” nav-link
+  const current = window.location.pathname.replace(/\/$/, "") || "/";
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    if (link.origin !== window.location.origin) return;
+    const hrefPath = link.pathname.replace(/\/$/, "") || "/";
+    if (hrefPath === current) {
+      link.classList.add("active");
+    }
+  });
+
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    // skip any link that isn’t pointing to this exact origin
+    if (link.origin !== window.location.origin) return;
+
+    // now strip trailing slash and compare
+    const hrefPath = link.pathname.replace(/\/$/, "") || "/";
+    if (hrefPath === current) {
+      link.classList.add("active");
+    }
+  });
+
+  // —— Now handle MOBILE links:
+  // give them all a class in HTML: e.g. <a class="mobile-nav-link" …>
+  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    // only internal links
+    if (link.origin !== window.location.origin) return;
+    const hrefPath = link.pathname.replace(/\/$/, "") || "/";
+    if (hrefPath === current) {
+      // add your active color
+      link.classList.add("text-primary-50");
+      // prepend the SVG icon
+      link.insertAdjacentHTML(
+        "afterbegin",
+        `
+          <div class="relative w-6 h-6 ">
+  <svg
+    viewBox="0 0 40 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="absolute inset-0 w-full h-full"
+  >
+    <g clip-path="url(#clip0)">
+      <rect width="40" height="40" fill="white" stroke="text-primary-80" stroke-width="0.4"/>
+      <path d="M0 0L40 40" stroke="rgb(var(--primary-80) / 1)" stroke-width="0.4"/>
+      <path d="M0 40L40 0" stroke="rgb(var(--primary-80) / 1)" stroke-width="0.4"/>
+      <path d="M20 0V40" stroke="rgb(var(--primary-80) / 1)" stroke-width="0.4"/>
+      <path d="M0 20H40" stroke="rgb(var(--primary-80) / 1)" stroke-width="0.4"/>
+      <rect x="2.5" y="7.5" width="35" height="25" rx="1" stroke="rgb(var(--primary-80) / 1)" stroke-width="0.4"/>
+      <rect x="5" y="5" width="30" height="30" rx="1" stroke="rgb(var(--primary-80) / 1)" stroke-width="0.4"/>
+      <rect x="7.5" y="37.5" width="35" height="25" rx="1" transform="rotate(-90 7.5 37.5)" stroke="rgb(var(--primary-80) / 1)" stroke-width="0.4"/>
+      <circle cx="20" cy="20" r="17.5" stroke="rgb(var(--primary-80) / 1)" stroke-width="0.4"/>
+      <circle cx="20" cy="20" r="7.5" stroke="rgb(var(--primary-80) / 1)" stroke-width="0.4"/>
+    </g>
+    <defs>
+      <clipPath id="clip0">
+        <rect width="40" height="40" fill="white"/>
+      </clipPath>
+    </defs>
+  </svg>
+
+  <!-- Overlay SVG: centered, smaller -->
+  <div class="absolute transform top-1/2 left-1/2 
+            translate-x-[-50%] -translate-y-1/2 
+           w-4 h-4 border rounded-full 
+           border-primary-50 p-[2px]">
+    <svg
+    viewBox="0 0 17 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="text-primary-50"
+  >
+    <path
+      d="M10.12 3.95337L14.1667 8.00004L10.12 12.0467"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M2.83331 8H14.0533"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+    </div>
+  
+</div>
+        `
+      );
+    }
+  });
 });
