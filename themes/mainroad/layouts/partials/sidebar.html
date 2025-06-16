@@ -10,7 +10,7 @@
 {{- if $sidebar -}}
 <div class="space-y-4">
 	<!-- Sidebar Part 1: Search + Categories -->
-	<aside class="sidebar-section opacity-0 will-change-transform backface-hidden sidebar{{ if eq $sidebar "left" }} sidebar--left{{ end }}">
+	<!-- <aside class="sidebar-section opacity-0 will-change-transform backface-hidden sidebar{{ if eq $sidebar "left" }} sidebar--left{{ end }}">
 		{{- $root := . }}
 		{{- with (default .Site.Params.sidebar.widgets .Params.widgets) }}
 			{{- range $widget := . }}
@@ -28,14 +28,14 @@
 				{{- end }}
 			{{- end }}
 		{{- end }}
-	</aside>
+	</aside> -->
 
 	<!-- Sidebar Part 2: Tags Only (Hidden on small screens) -->
 	<aside class="sidebar-section opacity-0 will-change-transform backface-hidden hidden md:block sidebar{{ if eq $sidebar "left" }} sidebar--left{{ end }}">
 		{{- $root := . }}
 		{{- with (default .Site.Params.sidebar.widgets .Params.widgets) }}
 			{{- range $widget := . }}
-				{{- if eq $widget "taglist" }}
+				{{- if in (slice "search" "taglist") $widget }}
 					{{- $widgetPath := printf "widgets/%s.html" $widget }}
 					{{- $widgetCached := false }}
 					{{- if isset $.Site.Params "widgets" }}

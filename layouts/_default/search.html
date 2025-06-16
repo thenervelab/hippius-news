@@ -54,8 +54,8 @@
         const thumbnailHTML = post.thumbnail
           ? `
             <div class="w-full md:w-[280px] flex-shrink-0">
-              <a href="${post.permalink}" class="block w-full aspect-square overflow-hidden rounded border md:h-auto h-[212px]">
-                <img src="${post.thumbnail}" alt="${post.title} thumbnail" class="object-cover w-full h-full">
+              <a href="${post.permalink}" class="block w-full overflow-hidden rounded border md:h-auto h-[212px]">
+                <img src="${post.thumbnail}" alt="${post.title} thumbnail" class="object-fill w-full h-full">
               </a>
             </div>
           `
@@ -79,8 +79,7 @@
             <div
               class="flex flex-wrap items-center gap-2 text-sm sm:text-base leading-[20px] sm:leading-[22px] font-medium text-grey-60"
               style="letter-spacing: -0.02em;">
-              <span>By ${post.author || "Unknown"}</span>
-              <span class="w-1 h-1 rounded-full bg-grey-75"></span>
+             
               <span>${post.readingTime || "1"} mins read</span>
               <span class="w-1 h-1 rounded-full bg-grey-75"></span>
               <span>${post.date || ""}</span>

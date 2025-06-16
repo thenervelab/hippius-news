@@ -4,7 +4,7 @@ date: 2024-03-15
 draft: false
 tags: ["Bittensor", "Blockchain", "Decentralized Storage", "Hippius", "IPFS"]
 categories: ["Technology", "Blockchain"]
-thumbnail: "/images/decentralised-cloud-storage.jpg"
+thumbnail: "/images/post-thumbnail-2.png"
 author: "Dubs The First"
 excerpt: "In today's digital world, data storage solutions are evolving rapidly. Centralized storage systems, while convenient, come with inherent risks like single points of failure, censorship, and data ownership concerns."
 ---

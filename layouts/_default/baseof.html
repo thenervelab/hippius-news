@@ -98,9 +98,9 @@
     <!-- Mobile: Search + Categories Horizontal Row -->
     {{ if or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") (eq .RelPermalink "/search/") }}
     <div
-      class="lg:hidden {{ if not .IsHome }}pt-0{{ else }}pt-10{{ end }} sm:pt-0 max-w-screen-xl mx-auto flex items-center gap-3 px-6 {{ if not .IsHome }}mt-[90px]{{ end }}">
+      class="lg:hidden {{ if not .IsHome }}pt-0{{ else }}pt-10{{ end }} sm:pt-0 max-w-screen-xl mx-auto flex items-center justify-between gap-3 px-6 {{ if not .IsHome }}mt-[90px]{{ end }}">
       {{ partial "widgets/search.html" . }}
-      {{ partial "widgets/categories.html" . }}
+      {{ partial "widgets/taglist.html" . }}
     </div>
     {{ end }}
 
