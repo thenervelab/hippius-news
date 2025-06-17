@@ -1,10 +1,10 @@
 <header id="main-nav" class="fixed top-0 left-0 w-full z-50 opacity-0 will-change-transform backface-hidden ">
   <div
-    class="w-full flex justify-center px-6 lg:px-12 pt-0 lg:pt-4"
+    class="w-full flex justify-center pt-0 lg:pt-4 px-6 lg:px-10"
     id="nav-outer"
   >
     <div
-      class="max-w-screen-xl flex items-center justify-between px-0 py-3 lg:p-4 w-full rounded-md bg-grey-100 text-grey-10 transition-all duration-300 sm:mt-4 md:mt-0"
+      class="max-w-screen-xl flex items-center justify-between px-0 py-3 lg:p-4 w-full rounded-md bg-grey-100 text-grey-10 transition-all duration-300 "
       id="nav-inner"
     >
       <!-- Logo -->
@@ -262,5 +262,24 @@
     }
   });
 </script>
+
+<style>
+  @keyframes nav-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#nav-inner.animate-in {
+  animation: nav-slide-in 0.5s cubic-bezier(.44,1.8,.51,1.01) both;
+}
+
+</style>
+
 
 

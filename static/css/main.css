@@ -791,18 +791,6 @@ video {
   aspect-ratio: 1 / 1;
 }
 
-.aspect-\[438\/100\] {
-  aspect-ratio: 438/100;
-}
-
-.aspect-\[638\/100\] {
-  aspect-ratio: 638/100;
-}
-
-.aspect-\[200\/100\] {
-  aspect-ratio: 200/100;
-}
-
 .size-10 {
   width: 2.5rem;
   height: 2.5rem;
@@ -871,12 +859,12 @@ video {
   height: 22px;
 }
 
-.h-\[28px\] {
-  height: 28px;
+.h-\[280px\] {
+  height: 280px;
 }
 
-.h-\[292px\] {
-  height: 292px;
+.h-\[28px\] {
+  height: 28px;
 }
 
 .h-\[386px\] {
@@ -899,6 +887,10 @@ video {
   height: calc(100% - 8px);
 }
 
+.h-auto {
+  height: auto;
+}
+
 .h-fit {
   height: -moz-fit-content;
   height: fit-content;
@@ -916,20 +908,8 @@ video {
   height: 100vh;
 }
 
-.h-auto {
-  height: auto;
-}
-
-.h-\[100px\] {
-  height: 100px;
-}
-
 .max-h-\[280px\] {
   max-height: 280px;
-}
-
-.max-h-\[292px\] {
-  max-height: 292px;
 }
 
 .max-h-\[70vh\] {
@@ -962,6 +942,10 @@ video {
 
 .w-\[20\.28px\] {
   width: 20.28px;
+}
+
+.w-\[280px\] {
+  width: 280px;
 }
 
 .w-\[38px\] {
@@ -1030,6 +1014,10 @@ video {
 }
 
 .flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.shrink-0 {
   flex-shrink: 0;
 }
 
@@ -1414,11 +1402,6 @@ video {
 
 .bg-no-repeat {
   background-repeat: no-repeat;
-}
-
-.object-contain {
-  -o-object-fit: contain;
-     object-fit: contain;
 }
 
 .object-cover {
@@ -2100,10 +2083,6 @@ a:hover {
     margin-top: 1rem;
   }
 
-  .sm\:h-\[160px\] {
-    height: 160px;
-  }
-
   .sm\:w-\[9rem\] {
     width: 9rem;
   }
@@ -2214,16 +2193,8 @@ a:hover {
     display: none;
   }
 
-  .md\:h-\[292px\] {
-    height: 292px;
-  }
-
   .md\:h-auto {
     height: auto;
-  }
-
-  .md\:h-\[220px\] {
-    height: 220px;
   }
 
   .md\:w-48 {
@@ -2232,10 +2203,6 @@ a:hover {
 
   .md\:w-\[280px\] {
     width: 280px;
-  }
-
-  .md\:w-\[300px\] {
-    width: 300px;
   }
 
   .md\:flex-row {
@@ -2249,14 +2216,6 @@ a:hover {
   .md\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-
-  .md\:pr-10 {
-    padding-right: 2.5rem;
-  }
-
-  .md\:pr-20 {
-    padding-right: 5rem;
   }
 
   .md\:text-6xl {
@@ -2326,10 +2285,6 @@ a:hover {
     height: 2rem;
   }
 
-  .lg\:h-\[292px\] {
-    height: 292px;
-  }
-
   .lg\:max-w-full {
     max-width: 100%;
   }
@@ -2363,6 +2318,16 @@ a:hover {
     padding: 1rem;
   }
 
+  .lg\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .lg\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
   .lg\:px-12 {
     padding-left: 3rem;
     padding-right: 3rem;
@@ -2370,6 +2335,10 @@ a:hover {
 
   .lg\:pr-10 {
     padding-right: 2.5rem;
+  }
+
+  .lg\:pt-0 {
+    padding-top: 0px;
   }
 
   .lg\:pt-4 {

@@ -54,7 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "bg-grey-100",
       "lg:shadow-md",
       "text-grey-10",
-      "mt-0"
+      "mt-0",
+      "animate-in"
     );
     navInner.classList.remove("bg-transparent", "text-grey-100", "lg:mt-12");
 
@@ -190,7 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "bg-grey-100",
       "lg:shadow-md",
       "text-grey-10",
-      "mt-0"
+      "mt-0",
+      "animate-in"
     );
     navInner.classList.add("bg-transparent", "text-grey-100", "lg:mt-12");
 

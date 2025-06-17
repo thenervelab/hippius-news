@@ -106,8 +106,10 @@
 
 
     <!-- Main layout with Sidebar and Content for Desktop -->
-    <div class=" flex {{ if eq .Site.Params.sidebarPosition " right" }}flex-row-reverse{{ else }}flex-row{{ end }} pt-6
-      gap-4 max-w-screen-xl mx-auto px-6 {{ if not .IsHome }}mt-0 lg:mt-[90px]{{ end }}">
+    <div class=" flex {{ if eq .Site.Params.sidebarPosition " right" }}flex-row-reverse{{ else }}flex-row{{ end }} 
+    {{ if not (hasPrefix .RelPermalink "/posts/") }} px-6 pt-6{{ end }}
+    {{ if (hasPrefix .RelPermalink "/posts/") }} lg:px-0 lg:pt-0 px-6 pt-6{{ end }}
+      gap-4 max-w-screen-xl mx-auto {{ if not .IsHome }}mt-0 lg:mt-[90px]{{ end }} ">
       {{ if not .IsPage }}
       <aside class="hidden lg:block w-full md:w-[280px] flex-shrink-0">
         {{ block "sidebar" . }}{{ partial "sidebar.html" . }}{{ end }}
@@ -115,7 +117,7 @@
       {{ end }}
 
       <main class="flex-1 {{ if not (or .IsHome (eq .Kind " taxonomy") (eq .Kind "term" ) (eq .RelPermalink "/search/"
-        )) }}mt-[50px] sm:mt-0{{ end }}">
+        )) }}mt-[50px] lg:mt-0{{ end }}">
         {{ block "main" . }}
         {{ with .Content }}
         <div class="content main__content clearfix">
