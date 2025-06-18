@@ -24,6 +24,19 @@ a:hover {
     color: inherit;
 }
 
+/* Hide all scrollbars everywhere */
+html, body, * {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE 10+ */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;                  /* Chrome, Safari, Opera */
+}
+
+
 @font-face {
     font-family: 'DigitalNumbers';
     src: url('/fonts/DigitalNumbers-Regular.ttf') format('truetype');

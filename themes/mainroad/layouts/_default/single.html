@@ -1,29 +1,27 @@
 {{ define "main" }}
 <main class="main mt-6 lg:mt-0" role="main">
-	<article class="post">
+    <article class="post">
 
-		{{ with .Params.thumbnail }}
-		<div class="w-full aspect-square max-h-[280px] overflow-hidden rounded mb-6">
-			<img src="{{ . }}" alt="{{ $.Title }} thumbnail" class="object-cover w-full h-full">
-		</div>
-		{{ end }}
+        {{ with .Params.thumbnail }}
+        <div class="w-full aspect-square max-h-[280px] overflow-hidden rounded mb-6">
+            <img src="{{ . }}" alt="{{ $.Title }} thumbnail" class="object-cover w-full h-full">
+        </div>
+        {{ end }}
 
-		<header class="post__header">
-			<h1 class="text-2xl sm:text-[32px] font-medium text-grey-10 leading-[32px] sm:leading-[40px]">{{ .Title
-				}}</h1>
+        <header class="post__header">
+            <h1 class="text-2xl sm:text-[32px] font-medium text-grey-10 leading-[32px] sm:leading-[40px]">{{ .Title }}
+            </h1>
 
-			<div class="flex flex-wrap items-center gap-2 mt-4 mb-4 pb-4 text-base leading-[20px] sm:leading-[22px] font-medium text-grey-60 border-b border-grey-80"
-				style="letter-spacing: -0.02em;">
-				<span>By {{ .Params.author | default "Unknown" }}</span>
-				<span class="w-1 h-1 rounded-full bg-grey-75"></span>
-				<span>{{ .ReadingTime }} mins read</span>
-				<span class="w-1 h-1 rounded-full bg-grey-75"></span>
-				<span>{{ .Date.Format "January 2, 2006" }}</span>
-			</div>
-		</header>
+            <div class="flex flex-wrap items-center gap-2 mt-4 mb-4 pb-4 text-base leading-[20px] sm:leading-[22px] font-medium text-grey-60 border-b border-grey-80" style="letter-spacing: -0.02em;">
+                <!-- <span>By {{ .Params.author | default "Unknown" }}</span>
+				<span class="w-1 h-1 rounded-full bg-grey-75"></span> -->
+                <span>{{ .ReadingTime }} mins read</span>
+                <span class="w-1 h-1 rounded-full bg-grey-75"></span>
+                <span>{{ .Date.Format "January 2, 2006" }}</span>
+            </div>
+        </header>
 
-		<div
-			class="content post__content text-base sm:text-lg leading-[26px] sm:leading-[28px] text-grey-40 space-y-6 [&_h1]:text-[28px] [&_h1]:sm:text-[32px] [&_h1]:leading-[36px] [&_h1]:font-semibold [&_h1]:text-grey-10 [&_h1]:mt-8 [&_h1]:mb-4
+        <div class="content post__content text-base sm:text-lg leading-[26px] sm:leading-[28px] text-grey-40 space-y-6 [&_h1]:text-[28px] [&_h1]:sm:text-[32px] [&_h1]:leading-[36px] [&_h1]:font-semibold [&_h1]:text-grey-10 [&_h1]:mt-8 [&_h1]:mb-4
 		[&_h2]:text-2xl [&_h2]:sm:text-[28px] [&_h2]:leading-[32px] [&_h2]:font-semibold [&_h2]:text-grey-10 [&_h2]:mt-6 [&_h2]:mb-3
 		[&_h3]:text-xl [&_h3]:leading-[28px] [&_h3]:font-semibold [&_h3]:text-grey-10 [&_h3]:mt-5 [&_h3]:mb-2
 		[&_h4]:text-lg [&_h4]:font-semibold [&_h4]:text-grey-10 [&_h4]:mt-4 [&_h4]:mb-2
@@ -35,42 +33,37 @@
 		[&_pre]:bg-grey-95 [&_pre]:text-sm [&_pre]:p-4 [&_pre]:rounded-md [&_pre]:overflow-x-auto
 		[&_blockquote]:border-l-4 [&_blockquote]:border-gray-300 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-gray-700
 		[&_table]:table [&_table]:w-full [&_th]:text-left [&_th]:font-semibold [&_td]:py-2 [&_td]:px-3 [&_th]:py-2 [&_th]:px-3 [&_tr]:border-b">
-			{{ .Content }}
-		</div>
+            {{ .Content }}
+        </div>
 
-		<!-- Share Section -->
-		<div class="mt-10 border rounded px-2 py-2">
-			<span class="text-sm leading-[20px] font-medium text-grey-60 font-sans block mb-2"
-				style="letter-spacing: -0.02em;">
+        <!-- Share Section -->
+        <div class="mt-10 border rounded px-2 py-2">
+            <span class="text-sm leading-[20px] font-medium text-grey-60 font-sans block mb-2" style="letter-spacing: -0.02em;">
 				SHARE ARTICLE
 			</span>
 
-			<div class="flex items-center gap-2">
-				<!-- Twitter / X Share -->
-				<a href="https://x.com/intent/tweet?text={{ .Title }}&url={{ .Permalink }}" target="_blank"
-					rel="noopener noreferrer" class="relative flex items-center justify-center">
-					<!-- <img src="/images/icon-grid.svg" alt="icon grid" class="absolute inset-0 w-full h-full rounded" /> -->
-					<img src="/images/twitter.svg" alt="Share on Twitter" class="relative w-6 h-6 z-10" />
-				</a>
+            <div class="flex items-center gap-2">
+                <!-- Twitter / X Share -->
+                <a href="https://x.com/intent/tweet?text={{ .Title }}&url={{ .Permalink }}" target="_blank" rel="noopener noreferrer" class="relative flex items-center justify-center">
+                    <!-- <img src="/images/icon-grid.svg" alt="icon grid" class="absolute inset-0 w-full h-full rounded" /> -->
+                    <img src="/images/twitter.svg" alt="Share on Twitter" class="relative w-6 h-6 z-10" />
+                </a>
 
-				<!-- LinkedIn Share -->
-				<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ .Permalink }}&title={{ .Title }}"
-					target="_blank" rel="noopener noreferrer" class="relative flex items-center justify-center">
-					<!-- <img src="/images/icon-grid.svg" alt="icon grid" class="absolute inset-0 w-full h-full rounded" /> -->
-					<img src="/images/linkedin.svg" alt="Share on LinkedIn" class="relative w-6 h-6 z-10" />
-				</a>
-			</div>
-		</div>
+                <!-- LinkedIn Share -->
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ .Permalink }}&title={{ .Title }}" target="_blank" rel="noopener noreferrer" class="relative flex items-center justify-center">
+                    <!-- <img src="/images/icon-grid.svg" alt="icon grid" class="absolute inset-0 w-full h-full rounded" /> -->
+                    <img src="/images/linkedin.svg" alt="Share on LinkedIn" class="relative w-6 h-6 z-10" />
+                </a>
+            </div>
+        </div>
 
-	</article>
+    </article>
 
 
-	<!-- Sticky TOC Trigger Wrapper -->
-	<div class="sticky bottom-10 flex justify-end z-50 px-4">
-		<!-- TOC Button with Circular Progress -->
-		<button id="toc-toggle"
-			class="relative w-[48px] h-[48px] bg-grey-100 border border-success-85 rounded-full shadow-md flex items-center justify-center hover:scale-105 transition-all"
-			title="Show article sections">
+    <!-- Sticky TOC Trigger Wrapper -->
+    <div class="sticky bottom-10 flex justify-end z-50 px-4">
+        <!-- TOC Button with Circular Progress -->
+        <button id="toc-toggle" class="relative w-[48px] h-[48px] bg-grey-100 border border-success-85 rounded-full shadow-md flex items-center justify-center hover:scale-105 transition-all" title="Show article sections">
 			<svg class="absolute w-full h-full rotate-[-90deg]" viewBox="0 0 48 48">
 				<circle cx="24" cy="24" r="22" fill="none" stroke="#E2F7E6" stroke-width="4" />
 				<circle id="progress-circle" cx="24" cy="24" r="22" fill="none" stroke="#04C870" stroke-width="4"
@@ -78,36 +71,29 @@
 			</svg>
 			<img src="/images/slider-vertical.svg" alt="TOC Icon" class="w-6 h-6 z-10" />
 		</button>
-	</div>
+    </div>
 
-	<!-- TOC Panel -->
-	<div id="toc-panel"
-		class="fixed bottom-[86px] right-6 bg-grey-100 border border-gray-200 rounded-lg shadow-xl w-72 max-w-[90vw] p-4 z-50 hidden">
-		<div class="flex justify-between items-center mb-3">
-			<h2 class="text-xs leading-[18px] font-medium text-grey-60"
-				style="letter-spacing: -0.02em; font-family: Geist;">
-				ARTICLE SECTIONS
-			</h2>
-			<button id="toc-close" class="text-grey-60 hover:text-grey-10 text-lg">&times;</button>
-		</div>
+    <!-- TOC Panel -->
+    <div id="toc-panel" class="fixed bottom-[86px] right-6 bg-grey-100 border border-gray-200 rounded-lg shadow-xl w-72 max-w-[90vw] p-4 z-50 hidden">
+        <div class="flex justify-between items-center mb-3">
+            <h2 class="text-xs leading-[18px] font-medium text-grey-60" style="letter-spacing: -0.02em; font-family: Geist;">
+                ARTICLE SECTIONS
+            </h2>
+            <button id="toc-close" class="text-grey-60 hover:text-grey-10 text-lg">&times;</button>
+        </div>
 
-		<div class="toc-list [&>ul]:pl-2 [&_li]:mb-2 [&_a]:text-sm [&_a]:leading-[20px] [&_a]:font-medium [&_a]:text-grey-50 [&_a:hover]:underline [&_a.active]:text-blue-600"
-			style="letter-spacing: -0.02em; font-family: Geist;">
-			{{ .TableOfContents }}
-		</div>
+        <div class="toc-list [&>ul]:pl-2 [&_li]:mb-2 [&_a]:text-sm [&_a]:leading-[20px] [&_a]:font-medium [&_a]:text-grey-50 [&_a:hover]:underline [&_a.active]:text-blue-600" style="letter-spacing: -0.02em; font-family: Geist;">
+            {{ .TableOfContents }}
+        </div>
 
-		<div class="mt-3 flex justify-between items-center">
-			<span class="text-xs leading-[18px] font-medium text-grey-60"
-				style="letter-spacing: -0.02em; font-family: Geist;">
+        <div class="mt-3 flex justify-between items-center">
+            <span class="text-xs leading-[18px] font-medium text-grey-60" style="letter-spacing: -0.02em; font-family: Geist;">
 				READ PROGRESS
 			</span>
-			<span id="read-progress" class="font-digi text-success-40 text-xs leading-none">0%</span>
-		</div>
-	</div>
+            <span id="read-progress" class="font-digi text-success-40 text-xs leading-none">0%</span>
+        </div>
+    </div>
 
 </main>
 
-{{ partial "authorbox.html" . }}
-{{ partial "pager.html" . }}
-{{ partial "comments.html" . }}
-{{ end }}
+{{ partial "authorbox.html" . }} {{ partial "pager.html" . }} {{ partial "comments.html" . }} {{ end }}

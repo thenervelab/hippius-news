@@ -1,11 +1,10 @@
-<header id="main-nav" class="fixed top-0 left-0 w-full z-50 opacity-0 will-change-transform backface-hidden ">
-  <div
-    class="w-full flex justify-center pt-0 lg:pt-4 px-6 lg:px-10"
-    id="nav-outer"
-  >
+<header id="main-nav" class="fixed top-0 left-0 w-full z-50 lg:bg-transparent bg-primary-50">
+  <div class="w-full flex justify-center pt-0 lg:pt-4 px-6 lg:px-10" id="nav-outer">
+    <!-- This is the animated content -->
     <div
-      class="max-w-screen-xl flex items-center justify-between px-0 py-3 lg:p-4 w-full rounded-md bg-grey-100 text-grey-10 transition-all duration-300 "
       id="nav-inner"
+      class="max-w-screen-xl flex items-center justify-between px-0 py-3 lg:p-4 w-full 
+      rounded-md text-grey-10 transition-all duration-300 opacity-0 will-change-transform"
     >
       <!-- Logo -->
       <a
@@ -242,26 +241,29 @@
 </header>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const nav = document.getElementById("main-nav");
-    let hasAnimated = false;
+ document.addEventListener("DOMContentLoaded", function () {
+  const navInner = document.getElementById("nav-inner");
+  let hasAnimated = false;
 
-    if (nav) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            nav.classList.remove("opacity-0");
-            nav.classList.add("animate-fade-in-from-b-0.7");
-            hasAnimated = true;
-            observer.unobserve(nav); 
-          }
-        },
-        { threshold: 0.1 }
-      );
-      observer.observe(nav);
-    }
-  });
+  if (navInner) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          navInner.classList.remove("opacity-0");
+          navInner.classList.add("animate-fade-in-from-b-0.7");
+          hasAnimated = true;
+          observer.unobserve(navInner);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(navInner);
+  }
+});
+
 </script>
+
+<canvas id="headerGridBg" width="1200" height="120" style="display:none"></canvas>
 
 <style>
   @keyframes nav-slide-in {
@@ -278,7 +280,6 @@
 #nav-inner.animate-in {
   animation: nav-slide-in 0.5s cubic-bezier(.44,1.8,.51,1.01) both;
 }
-
 </style>
 
 

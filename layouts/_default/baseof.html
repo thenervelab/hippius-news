@@ -87,18 +87,24 @@
 </head>
 
 <body class="body font-sans" data-page="{{ if .IsHome }}home{{ else }}internal{{ end }}">
-  <div class="w-full lg:p-10">
-    {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
+  <div class="w-full ">
+    <div class="lg:px-10 {{ if (hasPrefix .RelPermalink "/posts/") }} lg:pt-36 md:pt-24 pt-12  {{ end }}
+    {{ if not (hasPrefix .RelPermalink "/posts/") }} pt-10 {{ end }}" id="main-header">
+      {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
     <!-- {{ partial "hero.html" . }} -->
     {{ if .IsHome }}
     {{ partial "hero.html" . }}
     {{ end }}
-
-
-    <!-- Mobile: Search + Categories Horizontal Row -->
+    </div>
+    <div  id="main-scroll-area"
+    class="{{ if (hasPrefix .RelPermalink "/posts/") }} lg:h-[calc(100vh-9rem)] md:h-[calc(100vh-6rem)] overflow-auto {{ end }}">
+    <div class="lg:px-10 lg:pb-10">
+      <!-- Mobile: Search + Categories Horizontal Row -->
     {{ if or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") (eq .RelPermalink "/search/") }}
     <div
-      class="lg:hidden {{ if not .IsHome }}pt-0{{ else }}pt-10{{ end }} sm:pt-0 max-w-screen-xl mx-auto flex items-center justify-between gap-3 px-6 {{ if not .IsHome }}mt-[90px]{{ end }}">
+      class="lg:hidden {{ if not .IsHome }}pt-0{{ else }}pt-10{{ end }} sm:pt-0 
+      max-w-screen-xl mx-auto flex items-center justify-between gap-3 px-6 
+      {{ if and (not .IsHome) (not (hasPrefix .RelPermalink "/posts/")) }}mt-[90px]{{ end }}">
       {{ partial "widgets/search.html" . }}
       {{ partial "widgets/taglist.html" . }}
     </div>
@@ -107,16 +113,16 @@
 
     <!-- Main layout with Sidebar and Content for Desktop -->
     <div class=" flex {{ if eq .Site.Params.sidebarPosition " right" }}flex-row-reverse{{ else }}flex-row{{ end }} 
-    {{ if not (hasPrefix .RelPermalink "/posts/") }} px-6 pt-6{{ end }}
-    {{ if (hasPrefix .RelPermalink "/posts/") }} lg:px-0 lg:pt-0 px-6 pt-6{{ end }}
-      gap-4 max-w-screen-xl mx-auto {{ if not .IsHome }}mt-0 lg:mt-[90px]{{ end }} ">
+    {{ if not (hasPrefix .RelPermalink "/posts/") }} px-6 pt-6 {{ end }} 
+      gap-4 max-w-screen-xl mx-auto {{ if and (not .IsHome) (not (hasPrefix .RelPermalink "/posts/")) }}mt-0 lg:mt-[90px]{{ end }}
+      {{ if (hasPrefix .RelPermalink "/posts/") }} lg:px-0 md:pt-0 px-6 pt-6{{ end }}">
       {{ if not .IsPage }}
       <aside class="hidden lg:block w-full md:w-[280px] flex-shrink-0">
         {{ block "sidebar" . }}{{ partial "sidebar.html" . }}{{ end }}
       </aside>
       {{ end }}
 
-      <main class="flex-1 {{ if not (or .IsHome (eq .Kind " taxonomy") (eq .Kind "term" ) (eq .RelPermalink "/search/"
+      <main class="flex-1 {{ if not (or .IsHome (eq .Kind " taxonomy") (eq .Kind "term" ) (hasPrefix .RelPermalink "/posts/") (eq .RelPermalink "/search/"
         )) }}mt-[50px] lg:mt-0{{ end }}">
         {{ block "main" . }}
         {{ with .Content }}
@@ -127,9 +133,12 @@
         {{ end }}
       </main>
     </div>
+    </div>
+    {{ block "footer" . }}{{ partial "footer.html" . }}{{ end }}
+    </div>
   </div>
 
-  {{ block "footer" . }}{{ partial "footer.html" . }}{{ end }}
+  
 
   <script async defer src="{{ " js/menu.js" | relURL }}"></script>
   {{ range .Site.Params.customJS -}}

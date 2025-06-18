@@ -39,6 +39,124 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+  function colorArrToRgba(arr) {
+    return `rgba(${arr[0]},${arr[1]},${arr[2]},${arr[3]})`;
+  }
+
+  function drawBackgroundGrid(canvas, majorCell, minorCell) {
+    const ctx = canvas.getContext("2d");
+    const width = canvas.width;
+    const height = canvas.height;
+    ctx.clearRect(0, 0, width, height);
+
+    // ----- Calculate Offsets -----
+    const nFull = Math.floor(height / majorCell.cellDim);
+    const remain = height - nFull * majorCell.cellDim;
+    const offset = remain / 2;
+
+    // ----- Draw Minor Horizontal Lines (full coverage) -----
+    ctx.strokeStyle = colorArrToRgba(minorCell.lineColor);
+    ctx.lineWidth = minorCell.lineWidth > 0 ? minorCell.lineWidth : 1; // Ensure visible
+    // Start at offset, end at height - offset
+    for (
+      let y = offset;
+      y <= height - offset + 0.1; // +0.1 to ensure last line is drawn due to float math
+      y += minorCell.cellDim
+    ) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+      ctx.stroke();
+    }
+
+    // ----- Draw Major Horizontal Lines (centered) -----
+    ctx.strokeStyle = colorArrToRgba(majorCell.lineColor);
+    ctx.lineWidth = majorCell.lineWidth > 1 ? majorCell.lineWidth : 1.5;
+    for (let i = 0; i <= nFull; i++) {
+      const y = offset + i * majorCell.cellDim;
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+      ctx.stroke();
+    }
+
+    // ----- Draw Minor Vertical Lines (as before) -----
+    ctx.strokeStyle = colorArrToRgba(minorCell.lineColor);
+    ctx.lineWidth = minorCell.lineWidth > 0 ? minorCell.lineWidth : 1;
+    for (let x = 0; x <= width; x += minorCell.cellDim) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+    }
+
+    // ----- Draw Major Vertical Lines (as before) -----
+    ctx.strokeStyle = colorArrToRgba(majorCell.lineColor);
+    ctx.lineWidth = majorCell.lineWidth > 1 ? majorCell.lineWidth : 1.5;
+    for (let x = 0; x <= width; x += majorCell.cellDim) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+    }
+  }
+
+  const majorCell = {
+    lineColor: [234, 239, 249, 1],
+    lineWidth: 2,
+    cellDim: 42,
+  };
+  const minorCell = {
+    lineColor: [247, 249, 253, 1],
+    lineWidth: 2,
+    cellDim: 4.2,
+  };
+
+  function applyGridBackgroundToNav() {
+    let gridCanvas = document.getElementById("headerGridBg");
+    if (!gridCanvas) {
+      gridCanvas = document.createElement("canvas");
+      gridCanvas.id = "headerGridBg";
+      gridCanvas.width = 1200;
+      gridCanvas.height = 120;
+      gridCanvas.style.display = "none";
+      document.body.appendChild(gridCanvas);
+    }
+    drawBackgroundGrid(gridCanvas, majorCell, minorCell);
+    const bgDataUrl = gridCanvas.toDataURL("image/png");
+
+    const navInner = document.getElementById("nav-inner");
+    if (navInner) {
+      navInner.style.setProperty(
+        "background-image",
+        `url('${bgDataUrl}')`,
+        "important"
+      );
+      navInner.style.setProperty("background-repeat", "repeat-x", "important");
+      navInner.style.setProperty("background-size", "auto 100%", "important");
+      navInner.style.setProperty(
+        "background-position",
+        "left center",
+        "important"
+      );
+      navInner.style.setProperty("border-radius", "6px", "important");
+      
+      // (Optional) you can set the background-color to white or your desired value
+      // navInner.style.setProperty("background-color", "#fff", "important");
+    }
+  }
+
+  function removeGridBackgroundFromNav() {
+    const navInner = document.getElementById("nav-inner");
+    if (navInner) {
+      navInner.style.removeProperty("background-image");
+      navInner.style.removeProperty("background-repeat");
+      navInner.style.removeProperty("background-size");
+      navInner.style.removeProperty("background-position");
+      navInner.style.removeProperty("border");
+      // navInner.style.removeProperty("background-color"); // optional
+    }
+  }
 
   const getResponsiveMarginTop = () => {
     if (window.matchMedia("(max-width: 768px)").matches) {
@@ -61,11 +179,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
     if (isDesktop) {
-      navInner.style.setProperty(
-        "background-image",
-        "url('/images/header-bg.svg')",
-        "important"
-      );
+      // navInner.style.setProperty(
+      //   "background-image",
+      //   "url('/images/header-bg.svg')",
+      //   "important"
+      // );
+      navInner.style.setProperty("border", "1px solid rgb(var(--grey-80) / 1)", "important")
       navInner.style.setProperty("background-size", "auto 100%", "important");
       navInner.style.setProperty("background-repeat", "repeat-x", "important");
       navInner.style.setProperty(
@@ -77,6 +196,10 @@ document.addEventListener("DOMContentLoaded", () => {
       navInner.style.removeProperty("background-image");
       navInner.style.removeProperty("background-size");
       navInner.style.removeProperty("background-position");
+      navInner.style.removeProperty("border")
+    }
+    if (isDesktop) {
+      applyGridBackgroundToNav();
     }
 
     // fallback/background colors for different breakpoints
@@ -90,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navInner.style.setProperty(
       "background-color",
       window.matchMedia("(max-width: 1024px)").matches
-        ? "rgb(var(--primary-50) / 1)"
+        ? "transparent"
         : "rgb(var(--grey-100) / 1)",
       "important"
     );
@@ -208,6 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "important"
     );
     navInner.style.setProperty("margin-top", mtop, "important");
+    removeGridBackgroundFromNav();
 
     if (navLinks) {
       // reset nav-links to transparent state
