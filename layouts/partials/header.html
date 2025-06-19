@@ -4,7 +4,7 @@
     <div
       id="nav-inner"
       class="max-w-screen-xl flex items-center justify-between px-0 py-3 lg:p-4 w-full 
-      rounded-md text-grey-10 transition-all duration-300 opacity-0 will-change-transform"
+      rounded-md text-grey-100 lg:text-grey-10 transition-all duration-300 opacity-0 will-change-transform"
     >
       <!-- Logo -->
       <a
@@ -28,7 +28,7 @@
             ></path>
           </svg>
         </div>
-        <span class="font-medium text-lg">Hippius</span>
+        <span class="font-medium text-lg ">Hippius</span>
       </a>
 
       <!-- Nav links -->
@@ -50,6 +50,13 @@
             rel="noopener noreferrer"
             class="nav-link hover:opacity-60 "
             >Why Hippius?</a
+          >
+          <a
+            href="https://hippius.com/product"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-link hover:opacity-60 "
+            >Product</a
           >
           <a
             href="https://hippius.com/pricing"
@@ -179,16 +186,29 @@
         <a
           class="flex items-center gap-x-2 text-2xl font-medium mobile-nav-link"
           href="https://hippius.com/why-hippius"
+          target="_blank"
+          rel="noopener noreferrer"
           >Why Hippius?</a
         >
         <a
           class="flex items-center gap-x-2 text-2xl font-medium mobile-nav-link"
+          href="https://hippius.com/product"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Product</a
+        >
+        <a
+          class="flex items-center gap-x-2 text-2xl font-medium mobile-nav-link"
           href="https://hippius.com/pricing"
+          target="_blank"
+          rel="noopener noreferrer"
           >Pricing</a
         >
         <a
           class="flex items-center gap-x-2 text-2xl font-medium mobile-nav-link"
           href="https://docs.hippius.com"
+          target="_blank"
+          rel="noopener noreferrer"
           >Documentation</a
         >
         <div
@@ -277,8 +297,10 @@
   }
 }
 
-#nav-inner.animate-in {
-  animation: nav-slide-in 0.5s cubic-bezier(.44,1.8,.51,1.01) both;
+@media (min-width: 1024px) {
+  #nav-inner.animate-in {
+    animation: nav-slide-in 0.5s cubic-bezier(.44,1.8,.51,1.01) both;
+  }
 }
 </style>
 

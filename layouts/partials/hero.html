@@ -59,7 +59,7 @@ function colorArrToRgba(arr) {
   return `rgba(${arr[0]},${arr[1]},${arr[2]},${arr[3]})`;
 }
 
-function drawBackgroundGrid(canvas, majorCell, minorCell, bgColor) {
+function drawHeroBackgroundGrid(canvas, heroMajorCell, heroMinorCell, bgColor) {
   const dpr = window.devicePixelRatio || 1;
   const width = canvas.offsetWidth * dpr;
   const height = canvas.offsetHeight * dpr;
@@ -74,56 +74,56 @@ function drawBackgroundGrid(canvas, majorCell, minorCell, bgColor) {
   ctx.fillRect(0, 0, width, height);
 
   // --- MINOR VERTICAL LINES (always go to the last edge) ---
-  ctx.strokeStyle = colorArrToRgba(minorCell.lineColor);
-  ctx.lineWidth = minorCell.lineWidth > 0 ? minorCell.lineWidth : 1;
-  for (let x = 0; x <= width; x += minorCell.cellDim) {
+  ctx.strokeStyle = colorArrToRgba(heroMinorCell.lineColor);
+  ctx.lineWidth = heroMinorCell.lineWidth > 0 ? heroMinorCell.lineWidth : 1;
+  for (let x = 0; x <= width; x += heroMinorCell.cellDim) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
     ctx.lineTo(x, height);
     ctx.stroke();
   }
-  if (width % minorCell.cellDim !== 0) {
+  if (width % heroMinorCell.cellDim !== 0) {
     ctx.beginPath();
     ctx.moveTo(width, 0);
     ctx.lineTo(width, height);
     ctx.stroke();
   }
 
-  for (let y = 0; y <= height; y += minorCell.cellDim) {
+  for (let y = 0; y <= height; y += heroMinorCell.cellDim) {
     ctx.beginPath();
     ctx.moveTo(0, y);
     ctx.lineTo(width, y);
     ctx.stroke();
   }
-  if (height % minorCell.cellDim !== 0) {
+  if (height % heroMinorCell.cellDim !== 0) {
     ctx.beginPath();
     ctx.moveTo(0, height);
     ctx.lineTo(width, height);
     ctx.stroke();
   }
 
-  ctx.strokeStyle = colorArrToRgba(majorCell.lineColor);
-  ctx.lineWidth = majorCell.lineWidth > 1 ? majorCell.lineWidth : 1.5;
-  for (let x = 0; x <= width; x += majorCell.cellDim) {
+  ctx.strokeStyle = colorArrToRgba(heroMajorCell.lineColor);
+  ctx.lineWidth = heroMajorCell.lineWidth > 1 ? heroMajorCell.lineWidth : 1.5;
+  for (let x = 0; x <= width; x += heroMajorCell.cellDim) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
     ctx.lineTo(x, height);
     ctx.stroke();
   }
-  if (width % majorCell.cellDim !== 0) {
+  if (width % heroMajorCell.cellDim !== 0) {
     ctx.beginPath();
     ctx.moveTo(width, 0);
     ctx.lineTo(width, height);
     ctx.stroke();
   }
 
-  for (let y = 0; y <= height; y += majorCell.cellDim) {
+  for (let y = 0; y <= height; y += heroMajorCell.cellDim) {
     ctx.beginPath();
     ctx.moveTo(0, y);
     ctx.lineTo(width, y);
     ctx.stroke();
   }
-  if (height % majorCell.cellDim !== 0) {
+  if (height % heroMajorCell.cellDim !== 0) {
     ctx.beginPath();
     ctx.moveTo(0, height);
     ctx.lineTo(width, height);
@@ -133,12 +133,12 @@ function drawBackgroundGrid(canvas, majorCell, minorCell, bgColor) {
 
 
 
-const majorCell = {
+const heroMajorCell = {
   lineColor: [160, 196, 255, 0.09], 
   lineWidth: 2,
   cellDim: 200,                
 };
-const minorCell = {
+const heroMinorCell = {
   lineColor: [160, 196, 255, 0.09],  
   lineWidth: 1,
   cellDim: 20,               
@@ -148,7 +148,7 @@ function setupSectionGraphCanvas() {
   const canvas = document.getElementById("news-grid-bg");
   if (!canvas) return;
   function resize() {
-    drawBackgroundGrid(canvas, majorCell, minorCell, "#1F51BE");
+    drawHeroBackgroundGrid(canvas, heroMajorCell, heroMinorCell, "#1F51BE");
   }
   window.addEventListener("resize", resize);
   resize();

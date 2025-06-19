@@ -1,7 +1,7 @@
 {{- $inputName := .Site.Params.widgets.search.input.name | default "q" -}}
 {{- $inputPre  := .Site.Params.widgets.search.input.pre  | default ""  -}}
 
-<div class="custom-search-box rounded-lg px-3 sm:px-4 py-3 w-full lg:mb-6 max-w-[calc(100%-3rem)] lg:max-w-full">
+<div class="custom-search-box rounded-lg px-3 sm:px-4 py-3 w-full lg:mb-6 max-w-[calc(100%-7rem)] lg:max-w-full">
   <form
     action="{{ $inputPre }}/search"
     method="get"

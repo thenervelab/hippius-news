@@ -13,7 +13,7 @@
 		{{ $page := . }}
 		{{ with $page.Params.thumbnail }}
 		<div class="w-full md:w-[280px] flex-shrink-0">
-  <a href="{{ $page.Permalink }}" class="block w-full overflow-hidden rounded border md:h-auto h-[212px]">
+  <a href="{{ $page.Permalink }}" class="block w-full overflow-hidden rounded border h-auto">
     <img 
       src="{{ . }}" 
       alt="{{ $page.Title }} thumbnail"

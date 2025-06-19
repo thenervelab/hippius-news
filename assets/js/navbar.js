@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return `rgba(${arr[0]},${arr[1]},${arr[2]},${arr[3]})`;
   }
 
-  function drawBackgroundGrid(canvas, majorCell, minorCell) {
+  function drawHeaderBackgrondGraph(canvas, majorCell, minorCell) {
     const ctx = canvas.getContext("2d");
     const width = canvas.width;
     const height = canvas.height;
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
       gridCanvas.style.display = "none";
       document.body.appendChild(gridCanvas);
     }
-    drawBackgroundGrid(gridCanvas, majorCell, minorCell);
+    drawHeaderBackgrondGraph(gridCanvas, majorCell, minorCell);
     const bgDataUrl = gridCanvas.toDataURL("image/png");
 
     const navInner = document.getElementById("nav-inner");

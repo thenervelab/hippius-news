@@ -88,7 +88,7 @@
 
 <body class="body font-sans" data-page="{{ if .IsHome }}home{{ else }}internal{{ end }}">
   <div class="w-full ">
-    <div class="lg:px-10 {{ if (hasPrefix .RelPermalink "/posts/") }} lg:pt-36 md:pt-24 pt-12  {{ end }}
+    <div class="lg:px-10 {{ if (hasPrefix .RelPermalink "/posts/") }} lg:pt-36 md:pt-24 sm:pt-20 pt-16 {{ end }}
     {{ if not (hasPrefix .RelPermalink "/posts/") }} pt-10 {{ end }}" id="main-header">
       {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
     <!-- {{ partial "hero.html" . }} -->
@@ -97,14 +97,16 @@
     {{ end }}
     </div>
     <div  id="main-scroll-area"
-    class="{{ if (hasPrefix .RelPermalink "/posts/") }} lg:h-[calc(100vh-9rem)] md:h-[calc(100vh-6rem)] overflow-auto {{ end }}">
+    class="{{ if (hasPrefix .RelPermalink "/posts/") }} lg:h-[calc(100vh-9rem)] md:h-[calc(100vh-6rem)] 
+    sm:h-[calc(100vh-5.5rem)] h-[calc(100vh-4rem)]
+    overflow-auto {{ end }}">
     <div class="lg:px-10 lg:pb-10">
       <!-- Mobile: Search + Categories Horizontal Row -->
     {{ if or .IsHome (eq .Kind "taxonomy") (eq .Kind "term") (eq .RelPermalink "/search/") }}
     <div
       class="lg:hidden {{ if not .IsHome }}pt-0{{ else }}pt-10{{ end }} sm:pt-0 
       max-w-screen-xl mx-auto flex items-center justify-between gap-3 px-6 
-      {{ if and (not .IsHome) (not (hasPrefix .RelPermalink "/posts/")) }}mt-[90px]{{ end }}">
+      {{ if and (not .IsHome) (not (hasPrefix .RelPermalink "/posts/")) }}mt-[50px] lg:mt-[90px]{{ end }}">
       {{ partial "widgets/search.html" . }}
       {{ partial "widgets/taglist.html" . }}
     </div>
@@ -113,7 +115,7 @@
 
     <!-- Main layout with Sidebar and Content for Desktop -->
     <div class=" flex {{ if eq .Site.Params.sidebarPosition " right" }}flex-row-reverse{{ else }}flex-row{{ end }} 
-    {{ if not (hasPrefix .RelPermalink "/posts/") }} px-6 pt-6 {{ end }} 
+    {{ if not (hasPrefix .RelPermalink "/posts/") }} px-6 lg:px-0 pt-6 {{ end }} 
       gap-4 max-w-screen-xl mx-auto {{ if and (not .IsHome) (not (hasPrefix .RelPermalink "/posts/")) }}mt-0 lg:mt-[90px]{{ end }}
       {{ if (hasPrefix .RelPermalink "/posts/") }} lg:px-0 md:pt-0 px-6 pt-6{{ end }}">
       {{ if not .IsPage }}
